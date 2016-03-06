@@ -2,17 +2,19 @@
 <head>
 	<title></title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-	<script type="text/javascript" src = "app.js"></script>
+	<script type="text/javascript" src = "js/app.js"></script>
 
 
 
 </head>
 <h1>our page</h1>
-
 <body ng-controller = "getOurData as ctrl">
-	<button ng-click ="ctrl.getData()">get stuff!</button>
+	<form ng-submit="ctrl.getData(input)">
+		<input type="text" ng-model="ctrl.input">
+		<button>get stuff!</button>
+	</form>	
 	<ul>	
-		<li ng-repeat = "item in ctrl.stuff">{{ctrl.item}}</li>
+		<li ng-repeat = "item in ctrl.stuff"><img ng-src="{{item.images.original.url}}"></li>
 	</ul>
 </body>
 </html>
