@@ -5,26 +5,33 @@ var User = require('../models/users.js');
 
 
 
-// router.get('/:id', function(req, res) {
-// 	User.findById(req.params.id, function(err, data) {
-// 		res.render('index.html', {
-// 			// variable users in ejs = user data
-// 			user: data
-// 		});
-// 	});
-// });
+// GET ALL USERS
+router.get('/', function(req, res) {
+	User.find({}, function(err, data) {
+		res.json(data);
+	});
+});
 
+
+// GET SINGLE USER
+router.get('/:id', function(req, res) {
+    // console.log(req.params.id);
+    User.findById(req.params.id, function(err, data) {
+        // console.log(data);
+        res.json(data);
+    });
+});
 
 
 // SIGN UP / NEW USER 
-router.post('/', function(req, res){
-    //use req.body to get data of new target
-    var newUser = new User(req.body);
-    newUser.save(function(err, data){
-        //once save happens, send back saved object
-        res.send(data);
-    });
-});
+// router.post('/', function(req, res){
+//     //use req.body to get data of new target
+//     var newUser = new User(req.body);
+//     newUser.save(function(err, data){
+//         //once save happens, send back saved object
+//         res.send(data);
+//     });
+// });
 
 
 // SEED
@@ -49,8 +56,28 @@ router.get('/seed', function(req, res) {
 });
 
 
+router.put('/:id', function(req, res) {
+    // console.log(req.params.id);
+    User.findById(req.params.id, function(err, data) {
+        console.log(data);
+        // var newImg = req.query.newUrl;
+        // console.log(newImg);
+    });      
+});
+
+
 
 
 
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
