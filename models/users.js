@@ -3,10 +3,13 @@ var mongoose = require('mongoose');
 
 
 var userSchema = mongoose.Schema({
-        name: String,
-        gifs: [ ]
+        username: String,
+        email: String,
+        firstName: String,
+        imgUrl: String,
+        bio: String,
+        gifs: []
 });
-
 
 
 

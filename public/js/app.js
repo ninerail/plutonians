@@ -3,6 +3,30 @@ var app = angular.module('podcastApp', []);
 
 app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 
+	var self = this;
+
+	// GET ALL USERS
+	$http.get('/users').then(
+		// success
+		function(result) {
+			console.log(result.data);
+			self.users = result.data;
+	});
+
+
+	// pretend user id
+	var id = "56dc691bb098765cbc9dc896";
+
+
+	// GET SINGLE USER
+	$http.get('/users/' + id).then(
+		// success
+		function(result) {
+			console.log(result);
+			self.single = result.data;
+	});
+
+
 	// getData function to have data from api show on view
 	this.getData = function(input){
 		var controller = this;
@@ -30,23 +54,33 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		}
 		)};
 
-
+		// console.log(this.hiddenUrl);
 
 	// function for ng-click on the image 
 	this.addImg = function(url) {
-		console.log(url);
-		var newUrl = url;
+	
+		console.log(this);
+		var self = this;
+		console.log(id);
+		// console.log(url);
+		// // var newUrl = url;
+		var urlData = JSON.stringify(url);
+		// console.log(urlData);
+		
+		// console.log("newURL: ", newUrl);
 		$http({
 			method: "PUT",
-			url: "/users",
-			data: newUrl
+			url: "/users/" + id,
+			data: urlData
 		}).then(
 		// success
 		function(results) {
-			console.log(results);
-		});
+			console.log("This worked!");
+		}),
+		function() {
+			console.log(err);
+		}
 	};
-
 
 
 }]);

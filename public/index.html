@@ -1,24 +1,57 @@
 <html ng-app="podcastApp">
 <head>
-	<title></title>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-	<script type="text/javascript" src = "js/app.js"></script>
-
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script type="text/javascript" src = "js/app.js"></script>
 </head>
-<h1>our page</h1>
-
-
 <body ng-controller="getOurData as ctrl">
 
-	<form ng-submit="ctrl.getData(input)">
-		<input type="text" ng-model="ctrl.input">
-		<button>get stuff!</button>
-	</form>	
-	<ul>	
+    <!-- show if not already logged in -->
+    <form id="logIn">
+        <input type="text" placeholder="email"></br></br>
+        <input type="text" placeholder="password"></br></br>
+        <input type="submit" value="LOG IN"></br></br>
+        <p>not a user? sign up</p>
+    </form>    
 
-		<li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item.images.original.url)"><img ng-src="{{item.images.original.url}}"></li>
+    <!-- show if not yet signed up -->
+    <form id="signUp">
+        <input type="text" placeholder="email"></br></br>
+        <input type="text" placeholder="password"></br></br>
+        <input type="submit" value="SIGN UP"></br></br>
+        <p>already a user? sign in.</p>
+    </form>    
+    </br>
+    </br>
 
-	</ul>
+    <!-- search for gifs -->
+    <form ng-submit="ctrl.getData(input)">
+        <input type="text" ng-model="ctrl.input">
+        <button>get stuff!</button>
+    </form>    
+
+
+    <!-- USER BIO area -->
+    <section>
+        <img ng-src="{{ ctrl.single }}">
+    </section>
+
+
+    <!-- List gifs from search -->
+<!--     <div id="userGifContainer">
+        <ul>    
+            <li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item.images.original.url)"><img ng-src="{{item.images.original.url}}"></li>
+        </ul>
+    </div> -->
+
+
+
+    <!-- List gifs from search -->
+    <div id="gifSearchContainer">
+        <ul>    
+            <li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item.images.original.url)"><img ng-src="{{item.images.original.url}}"></li>
+        </ul>
+    </div>
 </body> 
 </html>

@@ -24,11 +24,6 @@ app.use('/users', usersController);
 // app.use('/comments', commentsController);
 
 
-// INDEX
-app.get('/', function(req, res){
-	res.render('index.ejs');
-});
-
 
 // LISTENING
 mongoose.connection.once('open', function() {
