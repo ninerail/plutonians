@@ -14,6 +14,14 @@ var User = require('../models/users.js');
 // 	});
 // });
 
+// SHOW ALL USERS
+router.get('/', function(req, res){
+    User.find({}, function(user, err){
+        console.log(user)
+        res.json(user)
+    })
+})
+
 
 
 // SIGN UP / NEW USER 
@@ -43,7 +51,7 @@ router.get('/seed', function(req, res) {
             res.send('Error seeding database');
         } else {
             console.log('SEED EXECUTED');
-            res.redirect('/user')
+            res.redirect('/users')
         }
     });
 });
