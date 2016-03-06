@@ -7,9 +7,11 @@ var methodOverride = require('method-override');
 
 mongoose.connect('mongodb://localhost:27017/gifty');
 
+
 // CONTROLLERS
 var usersController = require('./controllers/usersController');
 // var commentsController = require('./controllers/commentsController');
+
 
 // MIDDLEWARE
 app.use(express.static('public'));
@@ -17,8 +19,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 
+
 app.use('/users', usersController);
 // app.use('/comments', commentsController);
+
 
 // INDEX
 app.get('/', function(req, res){

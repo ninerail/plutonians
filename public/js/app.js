@@ -1,7 +1,9 @@
-var app = angular.module('podcastApp', [])
+var app = angular.module('podcastApp', []);
+
 
 app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 
+	// getData function to have data from api show on view
 	this.getData = function(input){
 		var controller = this;
 		var id = this.input;
@@ -20,17 +22,54 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 				controller.stuff = response.data.data;
 			// }
 			// console.log(response.data.data);
-			
-			
 		},
 		//error
 		function(err){
 			console.log(err)
 		}
+		)};
 
 
-		)
-	}
+
+	// function for ng-click on the image 
+	this.addImg = function(url) {
+		console.log(url);
+		var newUrl = url;
+		$http({
+			method: "PUT",
+			url: "/users",
+			data: newUrl
+		}).then(
+		// success
+		function(results) {
+			console.log(results);
+		});
+	};
 
 
-}])
+
+}]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
