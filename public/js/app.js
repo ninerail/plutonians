@@ -12,9 +12,10 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		}).then(
 		//success
 		function(response){
+			console.log($scope)
 			// console.log(response.data.data[1].images);
 			// console.log(response.data.data[2].images);
-			console.log(response.data.data);
+			// console.log(response.data.data);
 			// for (var i = 0; i < response.data.data.length; i++) {
 			// 	console.log(response.data.data[i].url);
 				controller.stuff = response.data.data;
