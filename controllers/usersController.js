@@ -63,6 +63,7 @@ var userSeed = [
 ];
 
 
+//SEED
 router.get('/seed', function(req, res) {
     User.create(userSeed, function(err) {
         if (err) {
@@ -76,13 +77,16 @@ router.get('/seed', function(req, res) {
 });
 
 
+// PUT route to add gif to user's array
 router.put('/:id', function(req, res) {
     // console.log(req.params.id);
     User.findById(req.params.id, function(err, data) {
-        console.log(data);
-        // var newImg = req.query.newUrl;
-        // console.log(newImg);
-    });      
+        console.log(req.body.url);
+        console.log(data.gifs);
+        data.gifs.push(req.body.url);
+        data.save();
+        // console.log(data);
+    });
 });
 
 
