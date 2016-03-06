@@ -7,15 +7,23 @@
 
 </head>
 <h1>our page</h1>
+<<<<<<< HEAD
 <body ng-controller = "getOurData as ctrl">
 
+=======
+<body ng-controller="getOurData as ctrl">
+>>>>>>> 1d694d5ca13bdc589bc5815dd69f53913898e85f
 	<form ng-submit="ctrl.getData(input)">
 		<input type="text" ng-model="ctrl.input">
 		<button>get stuff!</button>
 	</form>	
 	<ul>	
+<<<<<<< HEAD
 		<li ng-repeat = "item in ctrl.stuff"><img ng-src="{{item.images.original.url}}"></li>
 
+=======
+		<li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item.images.original.url)"><img ng-src="{{item.images.original.url}}"></li>
+>>>>>>> 1d694d5ca13bdc589bc5815dd69f53913898e85f
 	</ul>
-</body>
+</body> 
 </html>
