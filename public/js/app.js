@@ -56,21 +56,21 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		// console.log(this.hiddenUrl);
 
 	// function for ng-click on the image 
-	this.addImg = function(url) {
+	this.addImg = function(item) {
 	
-		console.log(this);
-		var self = this;
+		console.log(item);
+		// var self = this;
 		console.log(id);
 		// console.log(url);
 		// // var newUrl = url;
-		var urlData = JSON.stringify(url);
+
 		// console.log(urlData);
 		
 		// console.log("newURL: ", newUrl);
 		$http({
 			method: "PUT",
 			url: "/users/" + id,
-			data: urlData
+			data: item
 		}).then(
 		// success
 		function(results) {

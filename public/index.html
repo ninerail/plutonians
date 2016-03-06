@@ -34,7 +34,7 @@
 
 	<!-- USER BIO area -->
 	<section>
-		<img ng-src="{{ ctrl.single }}">
+		<img ng-src="http://a2.files.biography.com/image/upload/c_fill,cs_srgb,dpr_1.0,g_face,h_300,q_80,w_300/MTE5NTU2MzE1ODMzMzM3MzU1.jpg">
 	</section>
 
 
@@ -50,7 +50,7 @@
 	<!-- List gifs from search -->
 	<div id="gifSearchContainer">
 		<ul>	
-			<li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item.images.original.url)"><img ng-src="{{item.images.original.url}}"></li>
+			<li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item)"><img ng-src="{{item.images.original.url}}"></li>
 		</ul>
 	</div>
 </body> 
