@@ -4,14 +4,12 @@ var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var expressSession = require('express-session')
 
-mongoose.connect('mongodb://localhost:27017/gifty');
+var passport = require('passport');
+var session = require('session');
 
-
-// CONTROLLERS
-var usersController = require('./controllers/usersController');
-// var commentsController = require('./controllers/commentsController');
-
+require('./config/passport.js')(passport);
 
 // MIDDLEWARE
 app.use(express.static('public'));
@@ -20,10 +18,27 @@ app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 
 
+// PASSPORT STUFF
+app.use(expressSession({ name: 'whut', secret: 'conventional wisdom', saveUninitialized: true, resave: true, proxy: true }))
+app.use(passport.initialize());
+app.use(passport.session());
+
+	// adds {login: true} to res.locals object
+	app.use(function(req, res, next) {
+	  res.locals.login = req.isAuthenticated();
+	  next();
+	});
+
+// CONTROLLERS
+var usersController = require('./controllers/usersController');
+// var commentsController = require('./controllers/commentsController');
+
+
 app.use('/users', usersController);
 // app.use('/comments', commentsController);
 
-
+// CONNECTION
+mongoose.connect('mongodb://localhost:27017/gifty');
 
 // LISTENING
 mongoose.connection.once('open', function() {
