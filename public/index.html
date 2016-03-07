@@ -6,19 +6,19 @@
     <script type="text/javascript" src = "js/app.js"></script>
 </head>
 <body ng-controller="getOurData as ctrl">
-
+    <h3 ng-if = "ctrl.loggedIn"> {{ctrl.currentUser}}'s Gifty Page </h3>
     <!-- show if not already logged in -->
-    <form id="logIn">
-        <input type="text" placeholder="email"></br></br>
-        <input type="text" placeholder="password"></br></br>
+    <form id="logIn" ng-submit = "ctrl.logIn()">
+        <input type="text" placeholder="email" ng-model = "ctrl.loginData.email"></br></br>
+        <input type="text" placeholder="password" ng-model = "ctrl.loginData.password"></br></br>
         <input type="submit" value="LOG IN"></br></br>
         <p>not a user? sign up</p>
     </form>    
 
     <!-- show if not yet signed up -->
-    <form id="signUp">
-        <input type="text" placeholder="email"></br></br>
-        <input type="text" placeholder="password"></br></br>
+    <form id="signUp" ng-submit = "ctrl.signUp()">
+        <input type="text" placeholder="email" ng-model = "ctrl.signUpData.email"></br></br>
+        <input type="text" placeholder="password" ng-model = "ctrl.signUpData.password"></br></br>
         <input type="submit" value="SIGN UP"></br></br>
         <p>already a user? sign in.</p>
     </form>    
