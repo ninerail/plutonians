@@ -2,39 +2,66 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/users.js');
+var passport = require('passport');
 
 
-
-<<<<<<< HEAD
-// router.get('/:id', function(req, res) {
-// 	User.findById(req.params.id, function(err, data) {
-// 		res.render('index.html', {
-// 			// variable users in ejs = user data
-// 			user: data
-// 		});
-// 	});
-// });
 
 // SHOW ALL USERS
-router.get('/', function(req, res){
-    User.find({}, function(user, err){
-        console.log(user)
-        res.json(user)
-    })
-})
-
-=======
-// GET ALL USERS
 router.get('/', function(req, res) {
+    // check if user is logged in
+    res.locals.login = req.isAuthenticated();
+    // find all users
 	User.find({}, function(err, data) {
+        // send back json
 		res.json(data);
 	});
 });
->>>>>>> f0e967106e908157c60ad814b68000ec6d720d2d
+
+
+// IS LOGGED IN
+router.get('/isLoggedIn', function(req, res) {
+    if (req.isAuthenticated() == true) {
+        // console.log("IS LOGGED IN, BETCH: " + req.user);
+        res.send(req.user);
+    }
+    else {
+        console.log("not logged in");
+    }
+});
+
+
+// SIGNUP
+router.post('/signup', passport.authenticate('local-signup', {
+    failureRedirect: '/'}), function(req, res){
+    console.log("did i just create a user???   " + req.user);
+    res.send(req.user);
+});
+
+
+
+// LOGIN
+router.post('/login', passport.authenticate('local-login'), function(req, res){
+    res.send(req.user);
+});
+
+
+
+// LOGOUT
+router.get('/logout', function(req, res) {
+    console.log("LOGGING OUT");
+    // log user out
+    req.session.destroy();
+    req.user = null;
+    res.send(req.user);
+    // redirect to index
+    // res.send(req.user);
+});
+
 
 
 // GET SINGLE USER
 router.get('/:id', function(req, res) {
+    // res.locals.usertrue = (req.user.id == req.params.id);
     // console.log(req.params.id);
     User.findById(req.params.id, function(err, data) {
         // console.log(data);
@@ -43,46 +70,17 @@ router.get('/:id', function(req, res) {
 });
 
 
-// SIGN UP / NEW USER 
-// router.post('/', function(req, res){
-//     //use req.body to get data of new target
-//     var newUser = new User(req.body);
-//     newUser.save(function(err, data){
-//         //once save happens, send back saved object
-//         res.send(data);
-//     });
-// });
-
-
-// SEED
-var userSeed = [
-	{name: "andy"},
-	{name: "joe"},
-	{name: "matt"},
-	{name: "thom"}
-];
-
-
-//SEED
-router.get('/seed', function(req, res) {
-    User.create(userSeed, function(err) {
-        if (err) {
-            console.log(err);
-            res.send('Error seeding database');
-        } else {
-            console.log('SEED EXECUTED');
-            res.redirect('/users')
-        }
-    });
-});
-
 
 // PUT route to add gif to user's array
 router.put('/:id', function(req, res) {
-    // console.log(req.params.id);
+
+    // user control - get req.user from passport
+    // console.log("REQ.USER: " + req.user);
+    res.locals.usertrue = (req.user.id == req.params.id);
+
     User.findById(req.params.id, function(err, data) {
-        console.log(req.body.url);
-        console.log(data.gifs);
+        console.log("REQ.BODY: " + req.body.url);
+        console.log("DATA: " + data);
         data.gifs.push(req.body.url);
         data.save();
         // console.log(data);
@@ -92,10 +90,20 @@ router.put('/:id', function(req, res) {
 
 
 
+// middleware to check login status
+function isLoggedIn(req, res, next) {
+    console.log('isLoggedIn middleware');     
+    if (req.isAuthenticated()) {
+        console.log("successful login!")
+        return next(); 
+    } else {      
+        console.log("BAD LOGIN")
+        res.redirect('/');
+    }
+};
 
 
-module.exports = router;
-
+module.exports = router; // <----------------------------- END OF ROUTER
 
 
 
