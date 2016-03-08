@@ -71,25 +71,7 @@ router.get('/:id', function(req, res) {
 });
 
 
-
-// PUT route to add gif to user's array
-// router.put('/:id', function(req, res) {
-
-//     // user control - get req.user from passport
-//     // console.log("REQ.USER: " + req.user);
-//     res.locals.usertrue = (req.user.id == req.params.id);
-
-//     User.findById(req.params.id, function(err, data) {
-//         console.log("REQ.BODY: " + req.body);
-//         console.log("URLLLLLL " + req.body.images.original.url)
-//         console.log("DATA: " + data);
-//         data.gifs.push(req.body.images.original.url);
-//         data.save();
-//         // console.log(data);
-//     });
-// });
-
-
+// PUT ROUTE TO ADD IMG TO USER'S GIF ARRAY
 router.put('/:id', function(req, res) {
     console.log('we hit the add route');
     // user control - get req.user from passport
@@ -126,9 +108,6 @@ router.put('/:id', function(req, res) {
                     user.save();
                     console.log(user);
                     });
-
-
-
                 }
     })
 });

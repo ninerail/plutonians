@@ -73,6 +73,7 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 			// change positioning of searchBox
 			self.searchPosition = !self.searchPosition;
 
+
 			// reset form
 			self.signUpData.email = undefined;
 			self.signUpData.password = undefined;
@@ -80,8 +81,9 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 			self.signUpData.imgUrl = undefined;
 			self.signUpData.bio = undefined;
 
+
 			// NG-CLICK ON IMAGE TO ADD TO USER'S ARRAY
-			$scope.self.addImg = function(item) {
+			self.addImg = function(item) {
 				console.log(item);
 
 				$http({
@@ -190,6 +192,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 			self.single = null;
 			self.user = false;
 			self.myGifs = false;
+			// change positioning of searchBox
+			self.searchPosition = !self.searchPosition;
 		});
 	}
 

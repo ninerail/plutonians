@@ -25,7 +25,7 @@ body {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-form.active {
+form.active, .delete.active {
 	display: none;
 }
 
@@ -40,7 +40,7 @@ form.active {
 	font-size: 10px;
 }
 
-.formButton:hover {
+.formButton:hover, .delete:hover {
 	background-color: #ecb2b7;
 	color: #1f273c;
 }
@@ -161,6 +161,8 @@ input:focus, #searchButton:focus, button:focus {
 
 ul {
 	list-style: none;
+	font-family: 'glass';
+	color: #1f273c;
 }
 
 
@@ -178,6 +180,7 @@ ul {
 	border: 1em solid #1f273c;
 	box-sizing: border-box;
 	position: relative;
+	border-radius: 1.5em;
 	padding-bottom: 2em;
 }
 
@@ -199,6 +202,17 @@ li > img {
 
 li > img:hover {
 	box-shadow: 0 0 10px #d2e6e7;
+}
+
+.delete {
+	font-size: 10px;
+	padding: 0.5em;
+	border-radius: 5%;
+	background-color: #d7616c;
+	border: 0;
+	border-radius: 0.5em;
+	font-weight: bold;
+	color: white;
 }
 
 

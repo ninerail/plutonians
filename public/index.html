@@ -20,11 +20,11 @@
 
 		<!-- show if not yet signed up -->
 		<form id="signUp" ng-if="!ctrl.user" ng-class="(ctrl.displayForm)?'active':''">
-			<input type="text" ng-model="ctrl.signUpData.email" placeholder="&#xE801;">
-			<input type="text" ng-model="ctrl.signUpData.password" placeholder="&#xE802;">
-			<input type="text" ng-model="ctrl.signUpData.username" placeholder="&#xE805;">
-			<input type="text" ng-model="ctrl.signUpData.imgUrl" placeholder="&#xE804;">
-			<input type="text" ng-model="ctrl.signUpData.bio" placeholder="&#xE803;">
+			<input type="text" ng-model="ctrl.signUpData.email" placeholder="&#xE801; &nbsp; email">
+			<input type="text" ng-model="ctrl.signUpData.password" placeholder="&#xE802; &nbsp; password">
+			<input type="text" ng-model="ctrl.signUpData.username" placeholder="&#xE805; &nbsp; username">
+			<input type="text" ng-model="ctrl.signUpData.imgUrl" placeholder="&#xE804; &nbsp; image">
+			<input type="text" ng-model="ctrl.signUpData.bio" placeholder="&#xE803; &nbsp; bio">
 			<button ng-click="ctrl.signUp()" class="formButton">SIGN UP</button></br>
 			<p ng-click="ctrl.formShow()">already a user? sign in.</p>
 		</form>
@@ -65,9 +65,11 @@
 	<div id="userGifContainer" ng-class="(ctrl.myGifs)?'':'hideMyGifs'">
 		<div class="gifWrapper">
 			<ul>	
-				<li ng-repeat="item in ctrl.single.gifs track by $index"><img ng-src="{{ item.gifUrl }}"></li>
+				<li ng-repeat="item in ctrl.single.gifs track by $index"><img ng-src="{{ item.gifUrl }}">
+					<span class="likes"></br>&#xE807; {{ item.likes }} &nbsp;&nbsp;&nbsp;&nbsp; </span>
+					<button class="delete">DELETE</button>
+				</li>
 			</ul>
-			<span id="likes">&#xE807;</span>
 		</div>
 	</div>
 
