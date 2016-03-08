@@ -2,8 +2,8 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/users.js');
-var Gif = require('../models/gifs.js');
-var passport = require('passport');
+var Gif = require('../models/gifs.js')
+;var passport = require('passport');
 
 
 
@@ -12,10 +12,10 @@ router.get('/', function(req, res) {
     // check if user is logged in
     res.locals.login = req.isAuthenticated();
     // find all users
-	User.find({}, function(err, data) {
+    User.find({}, function(err, data) {
         // send back json
-		res.json(data);
-	});
+        res.json(data);
+    });
 });
 
 
@@ -34,7 +34,7 @@ router.get('/isLoggedIn', function(req, res) {
 // SIGNUP
 router.post('/signup', passport.authenticate('local-signup', {
     failureRedirect: '/'}), function(req, res){
-    console.log("did i just create a user???   " + req.user);
+    console.log("USER STUFF HERE   " + req.user);
     res.send(req.user);
 });
 
@@ -42,7 +42,6 @@ router.post('/signup', passport.authenticate('local-signup', {
 
 // LOGIN
 router.post('/login', passport.authenticate('local-login'), function(req, res){
-    console.log(req.user);
     res.send(req.user);
 });
 
@@ -72,46 +71,48 @@ router.get('/:id', function(req, res) {
 });
 
 
-
-// PUT route to add gif to user's array
-router.post('/:id', function(req, res) {
+// PUT ROUTE TO ADD IMG TO USER'S GIF ARRAY
+router.put('/:id', function(req, res) {
     console.log('we hit the add route');
     // user control - get req.user from passport
     // console.log("REQ.USER: " + req.user);
     res.locals.usertrue = (req.user.id == req.params.id);
 
     //count all occurrences of this gif in gif model
-    Gif.findOne({"imgUrl": req.body.images.original.url}, function(err, gif){
+    Gif.findOne({"gifUrl": req.body.images.original.url}, function(err, gif){
         if (gif) {
             gif.likes +=1 ;
             console.log('gif likes: ' + gif.likes);
             gif.save();
+
+                User.findById(req.params.id, function(err, user) {
+                console.log("REQ.BODY: " + req.body.images.original.url);
+                console.log("DATA: " + user);
+                user.gifs.push(gif);
+                user.save();
+                console.log(user);
+                });
+
         } else {
             var newGif = new Gif()
                 console.log("here should be the url we are pushing to GIF model:    " + req.body.images.original.url)
-                newGif.imgUrl = req.body.images.original.url;
+                newGif.gifUrl = req.body.images.original.url;
                 newGif.save()
                 newGif.likes += 1
                 newGif.save()
+
+                    User.findById(req.params.id, function(err, user) {
+                    console.log("REQ.BODY: " + req.body.images.original.url);
+                    console.log("DATA: " + user);
+                    user.gifs.push(newGif);
+                    user.save();
+                    console.log(user);
+                    });
+
+
+
                 }
     })
-
-
-    //add gif to gif model
-    
-
-
-
-
-
-    //add gif to user model
-    User.findById(req.params.id, function(err, data) {
-        console.log("REQ.BODY: " + req.body.images.original.url);
-        console.log("DATA: " + data);
-        data.gifs.push(req.body.images.original.url);
-        data.save();
-        // console.log(data);
-    });
 });
 
 
@@ -130,16 +131,4 @@ function isLoggedIn(req, res, next) {
 };
 
 
-
-
-
 module.exports = router; // <----------------------------- END OF ROUTER
-
-
-
-
-
-
-
-
-

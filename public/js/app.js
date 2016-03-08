@@ -7,29 +7,57 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 	// VARIABLE FOR THIS
 	var self = this;
 
-	// FALSE WHEN USER IS NOT LOGGED IN
-	this.user = false;
+	// DISPLAY FORM IS FALSE
+	this.displayForm = false;
 
+	// SEARCH BOX IS POSITIONED CORRECTLY BEFORE LOGIN
+	this.searchPosition = false;
 
-	// User LoggedIn verification
-	$http({
-		method: 'GET',
-		url: '/users/isLoggedIn'
-	}).then(
-	// success
-	function(response) {
-		console.log(response.data);
-		// console.log(self);
-		self.single = response.data;
-		self.user = true;
-		console.log(self);
-		// this.single = response.data;
-	});
+	// MYGIFS DON'T SHOW BEFORE LOGIN
+	this.myGifs = false;
+
+	// GIF CONTAINER AUTO-SHOWS
+	this.gifContainer = false;
 
 
 
+	// USER LOGGED IN VERIFICATION
+	this.getUser = function() {
+		$http({
+			method: 'GET',
+			url: '/users/isLoggedIn'
+		}).then(
+		// success
+		function(response) {
+			console.log(response.data);
+			// if statement to determine whether user is logged in or not
+			if (response.data.username != null) {
+				// user is logged in
+				self.user = true;
+				// variable to call in template
+				self.single = response.data;
+				// searchBox position goes to login position
+				self.searchPosition = true;
+				// MYGIFS SHOW DEFUALT
+				self.myGifs = true;
+
+			}
+			else {
+				self.user = false;
+			}
+		});
+	};
+
+
+
+	// EVOKE GET USER FUNCTION ON PAGE LOAD
+	this.getUser();
+
+
+
+	// SIGNUP FUNCTION
 	this.signUp = function(){
-		console.log("SIGNUP function firing in app.js");
+		// console.log(this.signUpData);
 		$http({
 			method: 'POST',
 			url: '/users/signup',
@@ -38,21 +66,24 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		//success
 		function(response){
 			console.log(response);
-			console.log(response.data._id);
+			// console.log(response.data._id);
 			self.single = response.data;
 			// self.user = true for logged in data
 			self.user = true;
+			// change positioning of searchBox
+			self.searchPosition = !self.searchPosition;
 
 			// reset form
 			self.signUpData.email = undefined;
 			self.signUpData.password = undefined;
+			self.signUpData.username = undefined;
+			self.signUpData.imgUrl = undefined;
+			self.signUpData.bio = undefined;
 
 			// NG-CLICK ON IMAGE TO ADD TO USER'S ARRAY
 			self.addImg = function(item) {
-				console.log("The image was clicked!");
 				console.log(item);
-				console.log(self.single);
-				console.log(self.single._id);
+
 				$http({
 					method: "PUT",
 					url: "/users/" + self.single._id,
@@ -61,13 +92,14 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 				// success
 				function(results) {
 					console.log("NG-CLICK ADDED ITEM TO USER ARRAY!!");
-					console.log(results);
 				});
 			};
 		});
 	}
 
 
+
+	// LOGIN FUNCTION
 	this.logIn = function(){
 		console.log("LOGIN function firing in app.js");
 		$http({
@@ -78,35 +110,53 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		//success
 		function(response){
 			console.log(response);
-			console.log($scope);
+			// variable to call in template
 			self.single = response.data;
 			// self.user = true for logged in data
 			self.user = true;
-
+			// SHOW GIFS
+			self.myGifs = true;
+			// change positioning of searchBox
+			self.searchPosition = !self.searchPosition;
 			// reset form
 			self.loginData.email = undefined;
 			self.loginData.password = undefined;
-
 			// NG-CLICK ON IMAGE TO ADD TO USER'S ARRAY
 			self.addImg = function(item) {
 				console.log("The image was clicked!");
 				console.log(item);
-				// var self = this;
-				console.log(self.single);
-				console.log(self.single._id);
+	
 				$http({
-					method: "POST",
+					method: "PUT",
 					url: "/users/" + self.single._id,
 					data: item
 				}).then(
 				// success
 				function(results) {
-					console.log("THIS IS IT!!!");
 					console.log("NG-CLICK ADDED ITEM TO USER ARRAY!!");
 				});
 			};
 		});
 	}
+
+
+
+	// FUNCTION TO SHOW FORM BY CHANGING CLASS
+	this.formShow = function() {
+		self.displayForm = !self.displayForm;
+	};
+
+
+
+	// HIDE GIF CONTAINER
+	this.hideGifs = function() {
+		// call get user function
+		self.getUser();
+		// change state of gifContainer
+		self.gifContainer = !self.gifContainer
+		// show my gifs
+		self.myGifs = true;
+	};
 
 
 
@@ -121,13 +171,7 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		}).then(
 		//success
 		function(response) {
-			console.log(response.data.data.length);
-
-			//loop over results to search for gif in database
-			for (var i = 0; i < response.data.length; i++) {
-
-			}
-			// console.log(response.data.data[1].images);
+			// console.log(response.data.data);
 			controller.stuff = response.data.data;
 		});
 	};
@@ -141,19 +185,15 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		}).then(
 		// success
 		function(response) {
-			console.log(response);
 			console.log("logged out");
-			self.single = response.data;
+			// reset all user logged in state and template objects
+			self.single = null;
+			self.user = false;
+			self.myGifs = false;
 		});
 	}
 
 
-
 }]);  //<------------------------------------------------  END OF CONTROLLER
-
-
-
-
-
 
 

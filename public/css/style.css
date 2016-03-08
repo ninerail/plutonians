@@ -11,12 +11,13 @@ body {
 
 @font-face {
 	font-family: 'glass';
-	src: url('../fonts/fontello/font/fontello.ttf');
+	src: url('../fonts/fontello-1798be74/font/fontello.ttf');
 }
 
 #formDiv {
 	width: 100%;
     padding: 1em 0 1em 0;
+    text-align: center;
     position: fixed;
     top: 0;
     background-color: rgba(57, 68, 99, 0.8);
@@ -24,9 +25,13 @@ body {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
+form.active {
+	display: none;
+}
+
 .formButton {
 	padding: 1em;
-	margin: 0 1em 1em 0;
+	margin: 0.5em;
 	background-color: #d7616c;
 	border: 0;
 	border-radius: 0.5em;
@@ -51,7 +56,6 @@ form > p {
 #logIn > input, #signUp > input {
 	margin: 0.5em;
 	padding: 0.5em;
-	width: 30%;
 	font-family: 'glass';
 	font-size: 14px;
 	background-color: #626c88;
@@ -60,13 +64,25 @@ form > p {
 	border: #47a4a9 solid 2px;
 }
 
-#logIn {
-	display: none;
+
+#logIn > input {
+	width: 30%;
 }
+
+
+#signUp > input {
+	width: 25%;
+}
+
+#logoutButton {
+	float: right;
+	margin-right: 2em;
+}
+
 
 section {
 	width: 100%;
-	margin-top: 10em;
+	margin-top: 9em;
 	position: relative;
 	height: 18em;
 	text-align: center;
@@ -77,7 +93,6 @@ section > img {
 	border-radius: 50%;
 	border: #505b7a 5px solid;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.12);
-	/*-webkit-filter: grayscale(1);*/
 }
 
 section > h2 {
@@ -92,7 +107,7 @@ section > p {
 	color: #505b7a;
 }
 
-input:focus {
+input:focus, #searchButton:focus, button:focus {
     outline-color: #d2e6e7;
     border-radius: 1em;
 }
@@ -100,6 +115,10 @@ input:focus {
 #searchForm {
 	width: 100%;
 	text-align: center;
+	margin-top: 19em;
+}
+
+#searchForm.position {
 	margin-top: 1em;
 }
 
@@ -132,20 +151,48 @@ input:focus {
 	color: #1f273c;
 }
 
-
-#searchGifContainer {
-	width: 100%;
-	margin-top: 6em;
+.hideMyGifs {
+	display: none;
 }
 
-#searchGifContainer > ul {
+.hideGifContainer {
+	display: none;
+}
+
+ul {
+	list-style: none;
+}
+
+
+#searchGifContainer, #userGifContainer {
 	width: 100%;
+	margin-top: 3em;
 	text-align: center;
 }
 
+
+.gifWrapper {
+	width: 100%;
+	background-color: #626c88;
+	text-align: center;
+	border: 1em solid #1f273c;
+	box-sizing: border-box;
+	position: relative;
+	padding-bottom: 2em;
+}
+
+#xCircle {
+	font-family: 'glass';
+	color: #1f273c;
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
+}
+
+
 li > img {
-	width: 80%;
-	margin-top: 1em;
+	width: 85%;
+	margin-top: 2em;
 	border-radius: 0.5em;
 	border: #47a4a9 3px solid;
 }
@@ -155,22 +202,6 @@ li > img:hover {
 }
 
 
+@media (min-width: 480px) { /* <----------------------- MIN-WIDTH 480px */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> cb0768d4f77ac8b034e89dd91254b3ceb777e3ac
+}
