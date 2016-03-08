@@ -11,53 +11,66 @@
 	<div id="formDiv">
 
 		<!-- show if not already logged in -->
-		<form id="logIn">
-			<input type="text" placeholder="&#xE801;">
-			<input type="text" placeholder="&#xE802;">
-			<button class="formButton">LOG IN</button></br>
-			<p>not a user? sign up</p>
+		<form id="logIn" ng-if="!ctrl.user" ng-class="(ctrl.displayForm)?'':'active'">
+			<input ng-model="ctrl.loginData.email" type="text" placeholder="&#xE801;">
+			<input ng-model="ctrl.loginData.password" type="text" placeholder="&#xE802;">
+			<button ng-click="ctrl.logIn()" class="formButton">LOG IN</button></br>
+			<p ng-click="ctrl.formShow()">not a user? sign up</p>
 		</form>	
 
 		<!-- show if not yet signed up -->
-		<form id="signUp">
-			<input type="text" placeholder="&#xE801;">
-			<input type="text" placeholder="&#xE802;">
-			<button class="formButton">SIGN UP</button></br>
-			<p>already a user? sign in.</p>
+		<form id="signUp" ng-if="!ctrl.user" ng-class="(ctrl.displayForm)?'active':''">
+			<input type="text" ng-model="ctrl.signUpData.email" placeholder="&#xE801;">
+			<input type="text" ng-model="ctrl.signUpData.password" placeholder="&#xE802;">
+			<input type="text" ng-model="ctrl.signUpData.username" placeholder="&#xE805;">
+			<input type="text" ng-model="ctrl.signUpData.imgUrl" placeholder="&#xE804;">
+			<input type="text" ng-model="ctrl.signUpData.bio" placeholder="&#xE803;">
+			<button ng-click="ctrl.signUp()" class="formButton">SIGN UP</button></br>
+			<p ng-click="ctrl.formShow()">already a user? sign in.</p>
 		</form>
+
+		<!-- logout button to show only when logged in -->
+		<button id="logoutButton" class="formButton" ng-if="ctrl.user" ng-click="ctrl.logout()">LOG OUT</button>
 
 	</div>	
 
 
 	<!-- USER BIO area -->
-	<section>
-		<img ng-src="http://a2.files.biography.com/image/upload/c_fill,cs_srgb,dpr_1.0,g_face,h_300,q_80,w_300/MTE5NTU2MzE1ODMzMzM3MzU1.jpg">
-		<h2>Andy Griffith</h2>
-		<p>I'm not really wise. But I can be cranky.</p>
+	<section ng-if="ctrl.user">
+		<img ng-src="{{ ctrl.single.imgUrl }}">
+		<h2>{{ ctrl.single.username }}</h2>
+		<p>{{ ctrl.single.bio }}</p>
 	</section>
 
 
 	<!-- search for gifs -->
-	<form id="searchForm" ng-submit="ctrl.getData(input)">
+	<form id="searchForm" ng-submit="ctrl.getData(input)" ng-class="(ctrl.searchPosition)?'position':''">
 		<input type="text" placeholder="&#xE800;" ng-model="ctrl.input"></br>
-		<button id="searchButton">SEARCH GIFS</button>
+		<button ng-click="ctrl.hideGifs()" id="searchButton">SEARCH GIFS</button>
 	</form>	
 
 
 	<!-- List gifs from search -->
-	<div id="searchGifContainer">
-		<ul>	
-			<li class="searchGif" ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item.images.original.url)"><img ng-src="{{item.images.original.url}}"></li>
-		</ul>
+	<div id="searchGifContainer" ng-class="(ctrl.gifContainer)?'':'hideGifContainer'">
+		<div class="gifWrapper">
+			<span ng-click="ctrl.hideGifs()" id="xCircle">&#xE808;</span>
+			<ul>	
+				<li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item)"><img ng-src="{{item.images.original.url}}"></li>
+			</ul>
+		</div>
 	</div>
 
 
-
 	<!-- List user gifs -->
-	<!-- <div id="userGifContainer">
-		<ul>	
-			<li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item)"><img ng-src="{{item.images.original.url}}"></li>
-		</ul>
-	</div> -->
+	<div id="userGifContainer" ng-class="(ctrl.myGifs)?'':'hideMyGifs'">
+		<div class="gifWrapper">
+			<ul>	
+				<li ng-repeat="item in ctrl.single.gifs track by $index"><img ng-src="{{ item.gifUrl }}"></li>
+			</ul>
+			<span id="likes">&#xE807;</span>
+		</div>
+	</div>
+
+
 </body> 
 </html>
