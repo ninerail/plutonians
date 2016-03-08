@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/users.js');
+var Gif = require('../models/gifs.js');
 var passport = require('passport');
 
 
@@ -41,6 +42,7 @@ router.post('/signup', passport.authenticate('local-signup', {
 
 // LOGIN
 router.post('/login', passport.authenticate('local-login'), function(req, res){
+    console.log(req.user);
     res.send(req.user);
 });
 
@@ -72,16 +74,41 @@ router.get('/:id', function(req, res) {
 
 
 // PUT route to add gif to user's array
-router.put('/:id', function(req, res) {
-
+router.post('/:id', function(req, res) {
+    console.log('we hit the add route');
     // user control - get req.user from passport
     // console.log("REQ.USER: " + req.user);
     res.locals.usertrue = (req.user.id == req.params.id);
 
+    //count all occurrences of this gif in gif model
+    Gif.findOne({"imgUrl": req.body.images.original.url}, function(err, gif){
+        if (gif) {
+            gif.likes +=1 ;
+            console.log('gif likes: ' + gif.likes);
+            gif.save();
+        } else {
+            var newGif = new Gif()
+                console.log("here should be the url we are pushing to GIF model:    " + req.body.images.original.url)
+                newGif.imgUrl = req.body.images.original.url;
+                newGif.save()
+                newGif.likes += 1
+                newGif.save()
+                }
+    })
+
+
+    //add gif to gif model
+    
+
+
+
+
+
+    //add gif to user model
     User.findById(req.params.id, function(err, data) {
-        console.log("REQ.BODY: " + req.body.url);
+        console.log("REQ.BODY: " + req.body.images.original.url);
         console.log("DATA: " + data);
-        data.gifs.push(req.body.url);
+        data.gifs.push(req.body.images.original.url);
         data.save();
         // console.log(data);
     });
@@ -101,6 +128,9 @@ function isLoggedIn(req, res, next) {
         res.redirect('/');
     }
 };
+
+
+
 
 
 module.exports = router; // <----------------------------- END OF ROUTER
