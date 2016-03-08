@@ -8,38 +8,7 @@
 </head>
 <body ng-controller="getOurData as ctrl">
 
-<<<<<<< HEAD
-    <!-- show if not already logged in -->
-    <form id="logIn">
-        <input type="text" placeholder="email"></br></br>
-        <input type="text" placeholder="password"></br></br>
-        <input type="submit" value="LOG IN"></br></br>
-        <p>not a user? sign up</p>
-    </form>    
 
-    <!-- show if not yet signed up -->
-    <form id="signUp">
-        <input type="text" placeholder="email"></br></br>
-        <input type="text" placeholder="password"></br></br>
-        <input type="submit" value="SIGN UP"></br></br>
-        <p>already a user? sign in.</p>
-    </form>    
-    </br>
-    </br>
-
-    <!-- search for gifs -->
-    <form ng-submit="ctrl.getData(input)">
-        <input type="text" ng-model="ctrl.input">
-        <button>get stuff!</button>
-    </form>    
-
-
-    <!-- USER BIO area -->
-    <section>
-        <img ng-src="http://a2.files.biography.com/image/upload/c_fill,cs_srgb,dpr_1.0,g_face,h_300,q_80,w_300/MTE5NTU2MzE1ODMzMzM3MzU1.jpg">
-    </section>
-
-=======
 	<div id="formDiv">
 
 		<!-- show if not already logged in -->
@@ -82,25 +51,13 @@
 			<li class="searchGif" ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item)"><img ng-src="{{item.images.original.url}}"></li>
 		</ul>
 	</div>
->>>>>>> 32d4399e232af9262acfa93172294b73941af2ec
 
 
-
-<<<<<<< HEAD
-
-    <!-- List gifs from search -->
-    <div id="gifSearchContainer">
-        <ul>    
-            <li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item)"><img ng-src="{{item.images.original.url}}"></li>
-        </ul>
-    </div>
-=======
 	<!-- List user gifs -->
 	<!-- <div id="userGifContainer">
 		<ul>	
 			<li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item)"><img ng-src="{{item.images.original.url}}"></li>
 		</ul>
 	</div> -->
->>>>>>> 32d4399e232af9262acfa93172294b73941af2ec
 </body> 
 </html>
