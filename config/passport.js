@@ -1,15 +1,15 @@
-var User = require('../models/users.js')
+var User = require('../models/users.js');
 var LocalStrategy = require('passport-local').Strategy;
-var passport = require('passport')
+var passport = require('passport');
 
-console.log("talking to passport")
+console.log("talking to passport");
 
-module.exports = function(passport){
+module.exports = function(passport) {
 
 	// used to serialize the user for the session
 	passport.serializeUser(function(user, done) {
-		console.log("====***** SERIALIZING *****====")
-		console.log("this is the *user* object:  " + user)
+		console.log("====***** SERIALIZING *****====");
+		console.log("this is the *user* object:  " + user);
     	done(null, user.id);
 	});
 
@@ -17,9 +17,9 @@ module.exports = function(passport){
 	// used to deserialize the user
 	passport.deserializeUser(function(id, done) {
     	User.findById(id, function(err, user) {
-    		console.log("===deserializ-ing===")
+    		console.log("===deserializ-ing===");
         	done(err, user);
-        	console.log("this happens in deserializer:    " + user)
+        	console.log("this happens in deserializer:    " + user);
     	});
 	});
 
