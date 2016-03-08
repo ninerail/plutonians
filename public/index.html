@@ -1,61 +1,63 @@
 <html ng-app="podcastApp">
 <head>
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
-    <script type="text/javascript" src = "js/app.js"></script>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script type="text/javascript" src = "js/app.js"></script>
 </head>
 <body ng-controller="getOurData as ctrl">
-    <h3> Users Gifty Page </h3>
-    <!-- show if not already logged in -->
-    <form id="logIn" ng-submit = "ctrl.logIn()">
-        <input type="text" placeholder="email" ng-model = "ctrl.loginData.email"></br></br>
-        <input type="text" placeholder="password" ng-model = "ctrl.loginData.password"></br></br>
-        <input type="submit" value="LOG IN"></br></br>
-        <p>not a user? sign up</p>
-    </form>    
 
-    <!-- show if not yet signed up -->
-    <form id="signUp" ng-submit = "ctrl.signUp()">
-        <input type="text" placeholder="email" ng-model = "ctrl.signUpData.email"></br></br>
-        <input type="text" placeholder="password" ng-model = "ctrl.signUpData.password"></br></br>
-        <input type="submit" value="SIGN UP"></br></br>
-        <p>already a user? sign in.</p>
-    </form>    
-    </br>
-    </br>
+	<div id="formDiv">
 
-    <!-- LOGOUT -->
-    <h3 ng-click="ctrl.logout()">LOGOUT</h3>
+		<!-- show if not already logged in -->
+		<form id="logIn">
+			<input type="text" placeholder="&#xE801;">
+			<input type="text" placeholder="&#xE802;">
+			<button class="formButton">LOG IN</button></br>
+			<p>not a user? sign up</p>
+		</form>	
 
-    <!-- search for gifs -->
-    <form ng-submit="ctrl.getData(input)">
-        <input type="text" ng-model="ctrl.input">
-        <button>get stuff!</button>
-    </form>    
+		<!-- show if not yet signed up -->
+		<form id="signUp">
+			<input type="text" placeholder="&#xE801;">
+			<input type="text" placeholder="&#xE802;">
+			<button class="formButton">SIGN UP</button></br>
+			<p>already a user? sign in.</p>
+		</form>
+
+	</div>	
 
 
-    <!-- USER BIO area -->
-    <section>
-        <h2>{{ ctrl.single.email }}</h2>
-    </section>
+	<!-- USER BIO area -->
+	<section>
+		<img ng-src="http://a2.files.biography.com/image/upload/c_fill,cs_srgb,dpr_1.0,g_face,h_300,q_80,w_300/MTE5NTU2MzE1ODMzMzM3MzU1.jpg">
+		<h2>Andy Griffith</h2>
+		<p>I'm not really wise. But I can be cranky.</p>
+	</section>
 
 
-    <!-- List gifs from search -->
-    <div id="userGifContainer">
-        <ul>    
-            <li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item)"><img ng-src="{{item.images.original.url}}"></li>
-        </ul>
-    </div>
+	<!-- search for gifs -->
+	<form id="searchForm" ng-submit="ctrl.getData(input)">
+		<input type="text" placeholder="&#xE800;" ng-model="ctrl.input"></br>
+		<button id="searchButton">SEARCH GIFS</button>
+	</form>	
+
+
+	<!-- List gifs from search -->
+	<div id="searchGifContainer">
+		<ul>	
+			<li class="searchGif" ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item.images.original.url)"><img ng-src="{{item.images.original.url}}"></li>
+		</ul>
+	</div>
 
 
 
-    <!-- List gifs from search -->
-    <div id="gifSearchContainer">
-        <ul>    
-     <!--        <li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item.images.original.url)"><img ng-src="{{item.images.original.url}}"></li> -->
-        </ul>
-    </div>
+	<!-- List user gifs -->
+	<!-- <div id="userGifContainer">
+		<ul>	
+			<li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item)"><img ng-src="{{item.images.original.url}}"></li>
+		</ul>
+	</div> -->
 </body> 
 </html>
