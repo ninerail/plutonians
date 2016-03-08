@@ -43,9 +43,9 @@
 	<div id="formDiv">
 
 		<!-- show if not already logged in -->
-		<form id="logIn">
-			<input type="text" placeholder="&#xE801;">
-			<input type="text" placeholder="&#xE802;">
+		<form id="slogIn" ng-submit="ctrl.logIn()">
+			<input type="text" placeholder="&#xE801;" ng-model="ctrl.loginData.email">
+			<input type="text" placeholder="&#xE802;" ng-model="ctrl.loginData.password">
 			<button class="formButton">LOG IN</button></br>
 			<p>not a user? sign up</p>
 		</form>	
@@ -79,7 +79,7 @@
 	<!-- List gifs from search -->
 	<div id="searchGifContainer">
 		<ul>	
-			<li class="searchGif" ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item.images.original.url)"><img ng-src="{{item.images.original.url}}"></li>
+			<li class="searchGif" ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item)"><img ng-src="{{item.images.original.url}}"></li>
 		</ul>
 	</div>
 >>>>>>> 32d4399e232af9262acfa93172294b73941af2ec

@@ -1,4 +1,4 @@
-var app = angular.module('podcastApp', ['ngStorage']);
+var app = angular.module('podcastApp', []);
 
 
 // GET USER DATA CONTROLLER
@@ -61,6 +61,7 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 				// success
 				function(results) {
 					console.log("NG-CLICK ADDED ITEM TO USER ARRAY!!");
+					console.log(results);
 				});
 			};
 		});
@@ -94,12 +95,13 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 				console.log(self.single);
 				console.log(self.single._id);
 				$http({
-					method: "PUT",
+					method: "POST",
 					url: "/users/" + self.single._id,
 					data: item
 				}).then(
 				// success
 				function(results) {
+					console.log("THIS IS IT!!!");
 					console.log("NG-CLICK ADDED ITEM TO USER ARRAY!!");
 				});
 			};
@@ -119,7 +121,12 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		}).then(
 		//success
 		function(response) {
-			console.log($scope);
+			console.log(response.data.data.length);
+
+			//loop over results to search for gif in database
+			for (var i = 0; i < response.data.length; i++) {
+
+			}
 			// console.log(response.data.data[1].images);
 			controller.stuff = response.data.data;
 		});
@@ -139,6 +146,7 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 			self.single = response.data;
 		});
 	}
+
 
 
 }]);  //<------------------------------------------------  END OF CONTROLLER
