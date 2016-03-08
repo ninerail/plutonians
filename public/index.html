@@ -6,7 +6,7 @@
     <script type="text/javascript" src = "js/app.js"></script>
 </head>
 <body ng-controller="getOurData as ctrl">
-    <h3 ng-if = "ctrl.loggedIn"> {{ctrl.currentUser}}'s Gifty Page </h3>
+    <h3> Users Gifty Page </h3>
     <!-- show if not already logged in -->
     <form id="logIn" ng-submit = "ctrl.logIn()">
         <input type="text" placeholder="email" ng-model = "ctrl.loginData.email"></br></br>
