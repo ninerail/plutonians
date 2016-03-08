@@ -8,6 +8,7 @@ var expressSession = require('express-session')
 
 var passport = require('passport');
 var session = require('session');
+var port = process.env.PORT || 3000;
 
 require('./config/passport.js')(passport);
 
@@ -38,11 +39,14 @@ app.use('/users', usersController);
 // app.use('/comments', commentsController);
 
 // CONNECTION
-mongoose.connect('mongodb://localhost:27017/gifty');
+//mongoose.connect('mongodb://localhost:27017/gifty');
+var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/gifty';
+mongoose.connect(mongoUri);
+
 
 // LISTENING
 mongoose.connection.once('open', function() {
-	app.listen(3000, function() {
+	app.listen(port, function() {
 		console.log('--------- LISTENING ---------');
 	});
 });
