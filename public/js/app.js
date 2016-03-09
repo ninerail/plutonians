@@ -4,6 +4,16 @@ var app = angular.module('podcastApp', []);
 // GET USER DATA CONTROLLER
 app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 
+
+	// FACEBOOK SHARE BUTTON
+	this.shareMe = function(item) {
+		console.log(item.gifUrl);
+		FB.ui({
+			method: 'share',
+			href: item.gifUrl,
+			}, function(response){});
+	}
+
 	// VARIABLE FOR THIS
 	var self = this;
 

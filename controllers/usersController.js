@@ -45,7 +45,8 @@ router.post('/login', passport.authenticate('local-login'), function(req, res){
     res.send(req.user);
 });
 
-//Delete gif from user
+
+//DELETE GIF
 router.delete('/delete/:id', function(req, res){
     User.findById(req.user, function(err, user){
         // console.log("this is the user from whom we are deleting:    " + user)
@@ -63,13 +64,9 @@ router.delete('/delete/:id', function(req, res){
                 user.save()
             }else{console.log("no match!!!")}
         }
-    })
-        
-    })
-    
-
-
-})
+    });     
+    });
+});
 
 
 // LOGOUT
