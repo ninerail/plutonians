@@ -19,6 +19,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 	// GIF CONTAINER AUTO-SHOWS
 	this.gifContainer = false;
 
+	// CREATE EMPTY OBJECT TO HOLD USER ID
+	var userObj = {};
 
 
 	// USER LOGGED IN VERIFICATION
@@ -43,8 +45,9 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 
 			}
 			else {
+				// user is not logged in
 				self.user = false;
-			}
+			};
 		});
 	};
 
@@ -52,7 +55,6 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 
 	// EVOKE GET USER FUNCTION ON PAGE LOAD
 	this.getUser();
-
 
 
 	// SIGNUP FUNCTION
@@ -79,24 +81,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 			self.signUpData.username = undefined;
 			self.signUpData.imgUrl = undefined;
 			self.signUpData.bio = undefined;
-
-			// NG-CLICK ON IMAGE TO ADD TO USER'S ARRAY
-			self.addImg = function(item) {
-				console.log(item);
-
-				$http({
-					method: "PUT",
-					url: "/users/" + self.single._id,
-					data: item
-				}).then(
-				// success
-				function(results) {
-					console.log("NG-CLICK ADDED ITEM TO USER ARRAY!!");
-				});
-			};
 		});
-	}
-
+	};
 
 
 	// LOGIN FUNCTION
@@ -110,6 +96,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		//success
 		function(response){
 			console.log(response);
+
+			userObj.id = response.data._id;
 			// variable to call in template
 			self.single = response.data;
 			// self.user = true for logged in data
@@ -121,23 +109,26 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 			// reset form
 			self.loginData.email = undefined;
 			self.loginData.password = undefined;
-			// NG-CLICK ON IMAGE TO ADD TO USER'S ARRAY
-			self.addImg = function(item) {
-				console.log("The image was clicked!");
-				console.log(item);
-	
-				$http({
-					method: "PUT",
-					url: "/users/" + self.single._id,
-					data: item
-				}).then(
-				// success
-				function(results) {
-					console.log("NG-CLICK ADDED ITEM TO USER ARRAY!!");
-				});
-			};
 		});
-	}
+	};
+
+
+	// NG-CLICK ON IMAGE TO ADD TO USER'S ARRAY
+	self.addImg = function(item) {
+		console.log("The image was clicked!");
+		console.log(item);
+		console.log(userObj.id);
+
+		$http({
+			method: "PUT",
+			url: "/users/" + userObj.id,
+			data: item
+		}).then(
+		// success
+		function(results) {
+			console.log("NG-CLICK ADDED ITEM TO USER ARRAY!!");
+		});
+	};
 
 
 
@@ -148,7 +139,7 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 
 
 
-	// HIDE GIF CONTAINER
+	// HIDE/SHOW GIF CONTAINERS
 	this.hideGifs = function() {
 		// call get user function
 		self.getUser();
@@ -171,10 +162,15 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		}).then(
 		//success
 		function(response) {
+			// hide user gifs
+			self.myGifs = false;
 			// console.log(response.data.data);
 			controller.stuff = response.data.data;
+			// clear the form
+			self.input = null;
 		});
 	};
+
 
 
 	// LOGOUT
@@ -190,8 +186,10 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 			self.single = null;
 			self.user = false;
 			self.myGifs = false;
+			// change positioning of searchBox
+			self.searchPosition = !self.searchPosition;
 		});
-	}
+	};
 
 
 }]);  //<------------------------------------------------  END OF CONTROLLER

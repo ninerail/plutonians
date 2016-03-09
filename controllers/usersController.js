@@ -85,13 +85,13 @@ router.put('/:id', function(req, res) {
             console.log('gif likes: ' + gif.likes);
             gif.save();
 
-                User.findById(req.params.id, function(err, user) {
-                console.log("REQ.BODY: " + req.body.images.original.url);
-                console.log("DATA: " + user);
-                user.gifs.push(gif);
-                user.save();
-                console.log(user);
-                });
+            User.findById(req.params.id, function(err, user) {
+            console.log("REQ.BODY: " + req.body.images.original.url);
+            console.log("DATA: " + user);
+            user.gifs.push(gif);
+            user.save();
+            console.log(user);
+            });
 
         } else {
             var newGif = new Gif()
@@ -108,9 +108,6 @@ router.put('/:id', function(req, res) {
                     user.save();
                     console.log(user);
                     });
-
-
-
                 }
     })
 });

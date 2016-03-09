@@ -4,6 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script type="text/javascript" src = "js/app.js"></script>
 </head>
 <body ng-controller="getOurData as ctrl">
@@ -19,13 +20,14 @@
 			<p ng-click="ctrl.formShow()">not a user? sign up</p>
 		</form>	
 
+
 		<!-- show if not yet signed up -->
 		<form id="signUp" ng-if="!ctrl.user" ng-class="(ctrl.displayForm)?'active':''">
-			<input type="text" ng-model="ctrl.signUpData.email" placeholder="&#xE801;">
-			<input type="text" ng-model="ctrl.signUpData.password" placeholder="&#xE802;">
-			<input type="text" ng-model="ctrl.signUpData.username" placeholder="&#xE805;">
-			<input type="text" ng-model="ctrl.signUpData.imgUrl" placeholder="&#xE804;">
-			<input type="text" ng-model="ctrl.signUpData.bio" placeholder="&#xE803;">
+			<input type="text" ng-model="ctrl.signUpData.email" placeholder="&#xE801; &nbsp; email">
+			<input type="text" ng-model="ctrl.signUpData.password" placeholder="&#xE802; &nbsp; password">
+			<input type="text" ng-model="ctrl.signUpData.username" placeholder="&#xE805; &nbsp; username">
+			<input type="text" ng-model="ctrl.signUpData.imgUrl" placeholder="&#xE804; &nbsp; image">
+			<input type="text" ng-model="ctrl.signUpData.bio" placeholder="&#xE803; &nbsp; bio">
 			<button ng-click="ctrl.signUp()" class="formButton">SIGN UP</button></br>
 			<p ng-click="ctrl.formShow()">already a user? sign in.</p>
 		</form>
@@ -36,12 +38,14 @@
 	</div>	
 
 
+
 	<!-- USER BIO area -->
 	<section ng-if="ctrl.user">
 		<img ng-src="{{ ctrl.single.imgUrl }}">
 		<h2>{{ ctrl.single.username }}</h2>
 		<p>{{ ctrl.single.bio }}</p>
 	</section>
+
 
 
 	<!-- search for gifs -->
@@ -51,24 +55,28 @@
 	</form>	
 
 
+
 	<!-- List gifs from search -->
 	<div id="searchGifContainer" ng-class="(ctrl.gifContainer)?'':'hideGifContainer'">
 		<div class="gifWrapper">
-			<span ng-click="ctrl.hideGifs()" id="xCircle">&#xE808;</span>
-			<ul>	
+			<span ng-if="ctrl.user" ng-click="ctrl.hideGifs()" id="xCircle">&#xE808;</span>
+			<ul class="masonryImage">	
 				<li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item)"><img ng-src="{{item.images.original.url}}"></li>
 			</ul>
 		</div>
 	</div>
 
 
+
 	<!-- List user gifs -->
 	<div id="userGifContainer" ng-class="(ctrl.myGifs)?'':'hideMyGifs'">
 		<div class="gifWrapper">
 			<ul>	
-				<li ng-repeat="item in ctrl.single.gifs track by $index"><img ng-src="{{ item.gifUrl }}"></li>
+				<li ng-class="($parent.ctrl.myGifs)?'':'hideMyGifs'" ng-repeat="item in ctrl.single.gifs track by $index"><img ng-src="{{ item.gifUrl }}">
+					<span class="likes"></br>&#xE807; {{ item.likes }} &nbsp;&nbsp;&nbsp;&nbsp; </span>
+					<button class="delete">DELETE</button>
+				</li>
 			</ul>
-			<span id="likes">&#xE807;</span>
 		</div>
 	</div>
 
