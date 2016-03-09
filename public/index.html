@@ -60,8 +60,14 @@
 	<div id="searchGifContainer" ng-class="(ctrl.gifContainer)?'':'hideGifContainer'">
 		<div class="gifWrapper">
 			<span ng-if="ctrl.user" ng-click="ctrl.hideGifs()" id="xCircle">&#xE808;</span>
-			<ul class="masonryImage">	
-				<li ng-repeat="item in ctrl.stuff" ng-click="$parent.ctrl.addImg(item)"><img ng-src="{{item.images.original.url}}"></li>
+			<ul class="masonryImage">
+				<li ng-repeat="item in ctrl.stuff track by $index" ng-click="$parent.ctrl.addImg(item, $index)">
+					<div class="img-wrap">
+						<div class="img-container">
+							<img ng-class="($index == $parent.ctrl.selectedIndex)?'current':''" ng-src="{{item.images.original.url}}">
+						</div>	
+					</div>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -73,8 +79,9 @@
 		<div class="gifWrapper">
 			<ul>	
 				<li ng-class="($parent.ctrl.myGifs)?'':'hideMyGifs'" ng-repeat="item in ctrl.single.gifs track by $index"><img ng-src="{{ item.gifUrl }}">
-					<span class="likes"></br>&#xE807; {{ item.likes }} &nbsp;&nbsp;&nbsp;&nbsp; </span>
-					<button class="delete" ng-model="item" ng-click="ctrl.deleteGif(item)">DELETE</button>
+					<span class="likes"></br>&#xE807; {{ item.likes }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<span class="facebook">&#xE809; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<button class="delete">DELETE</button>
 				</li>
 			</ul>
 		</div>
