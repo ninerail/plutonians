@@ -74,7 +74,7 @@
 			<ul>	
 				<li ng-class="($parent.ctrl.myGifs)?'':'hideMyGifs'" ng-repeat="item in ctrl.single.gifs track by $index"><img ng-src="{{ item.gifUrl }}">
 					<span class="likes"></br>&#xE807; {{ item.likes }} &nbsp;&nbsp;&nbsp;&nbsp; </span>
-					<button class="delete">DELETE</button>
+					<button class="delete" ng-model="item" ng-click="ctrl.deleteGif(item)">DELETE</button>
 				</li>
 			</ul>
 		</div>
