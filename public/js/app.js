@@ -191,6 +191,27 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		});
 	};
 
+// DELETE GIF (from user's collection) FUNCTION
+    this.deleteGif = function(image){
+        console.log("delete function firing in app.js");
+        console.log("this is the id of image to delete:  " + image._id)
+        $http({
+            method: 'delete',
+            url: '/users/delete/' + image._id,
+            data: this
+        }).then(
+        //success
+        function(response){
+            console.log($scope)
+            
+        },
+        function(err){
+            console.log(err)
+        }
+        )
+
+        
+    }
 
 }]);  //<------------------------------------------------  END OF CONTROLLER
 
