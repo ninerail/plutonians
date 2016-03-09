@@ -12,7 +12,7 @@ body {
 
 @font-face {
 	font-family: 'glass';
-	src: url('../fonts/fontello-1798be74/font/fontello.ttf');
+	src: url('../fonts/fontello-a0908d28/font/fontello.ttf');
 }
 
 #formDiv {
@@ -151,13 +151,21 @@ input:focus, #searchButton:focus, button:focus, #xCircle:focus {
 	color: #1f273c;
 }
 
+
 .hideMyGifs {
 	display: none;
 }
 
+
 .hideGifContainer {
 	display: none;
 }
+
+
+.facebook:hover {
+	color: #aee4e7;
+}
+
 
 ul {
 	list-style: none;
@@ -196,6 +204,11 @@ ul {
 	color: #aee4e7;
 }
 
+.img-wrap {
+	margin: 0 auto;
+	width: 85%;
+}
+
 li > img {
 	width: 85%;
 	margin-top: 2em;
@@ -204,12 +217,22 @@ li > img {
 	border: #47a4a9 3px solid;
 }
 
-li > img:hover {
+.img-container > img {
+	width: 100%;
+	margin-top: 2em;
+	margin-bottom: 0.25em;
+	border-radius: 0.5em;
+	border: #47a4a9 3px solid;
+}
+
+li > img:hover, .img-container > img:hover {
 	box-shadow: 0 0 10px #d2e6e7;
 }
 
-li > img:focus {
-	box-shadow: 1px 1px 10px #ffffff;
+.current {
+	border: 7px solid #f4de33 !important;
+	box-sizing: border-box;
+	box-shadow: 0 0 10px #f4de33;
 }
 
 .delete {

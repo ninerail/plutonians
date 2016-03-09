@@ -22,6 +22,9 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 	// CREATE EMPTY OBJECT TO HOLD USER ID
 	var userObj = {};
 
+	// ALL GIFS ARE NOT DARKENED ON PAGE LOAD
+	// this.imgDarken = false;
+
 
 	// USER LOGGED IN VERIFICATION
 	this.getUser = function() {
@@ -42,6 +45,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 				self.searchPosition = true;
 				// MYGIFS SHOW DEFUALT
 				self.myGifs = true;
+				// id needs to be defined if already logged in
+				userObj.id = response.data._id;
 
 			}
 			else {
@@ -114,10 +119,15 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 
 
 	// NG-CLICK ON IMAGE TO ADD TO USER'S ARRAY
-	self.addImg = function(item) {
+	self.addImg = function(item, index) {
 		console.log("The image was clicked!");
 		console.log(item);
 		console.log(userObj.id);
+
+		// get index number to darken with class
+		console.log(index);
+		this.selectedIndex = index;
+		console.log(this.selectedIndex);
 
 		$http({
 			method: "PUT",
@@ -126,9 +136,10 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		}).then(
 		// success
 		function(results) {
-			console.log("NG-CLICK ADDED ITEM TO USER ARRAY!!");
+			// console.log("NG-CLICK ADDED ITEM TO USER ARRAY!!");
 		});
 	};
+
 
 
 
