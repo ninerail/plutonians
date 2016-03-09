@@ -124,7 +124,17 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 			// reset form
 			self.loginData.email = undefined;
 			self.loginData.password = undefined;
-		});
+		},
+		function(err){
+			badLogin();
+		}
+		);
+	};
+
+	var badLogin = function(){
+    var box = document.getElementById('login-status');
+    box.innerHTML = "Incorrect login, please try again!"
+
 	};
 
 
@@ -213,7 +223,7 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 	};
 
 // DELETE GIF (from user's collection) FUNCTION
-    this.deleteGif = function(image){
+    this.deleteGif = function(image, index){
         console.log("delete function firing in app.js");
         console.log("this is the id of image to delete:  " + image._id)
         $http({
@@ -224,6 +234,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
         //success
         function(response){
             console.log($scope)
+            console.log($scope.ctrl.single.gifs[index])
+            $scope.ctrl.single.gifs.splice(index, 1)
             
         },
         function(err){

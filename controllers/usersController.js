@@ -63,7 +63,7 @@ router.delete('/delete/:id', function(req, res){
                 
                 user.save()
             }else{console.log("no match!!!")}
-        }
+        }res.send(gif);
     });     
     });
 });

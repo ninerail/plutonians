@@ -35,6 +35,7 @@
 			<input ng-model="ctrl.loginData.email" type="text" placeholder="&#xE801;">
 			<input ng-model="ctrl.loginData.password" type="text" placeholder="&#xE802;">
 			<button ng-click="ctrl.logIn()" class="formButton">LOG IN</button></br>
+			<div id = "login-status"></div>
 			<p ng-click="ctrl.formShow()">not a user? sign up</p>
 		</form>	
 
@@ -95,7 +96,7 @@
 				<li ng-class="($parent.ctrl.myGifs)?'':'hideMyGifs'" ng-repeat="item in ctrl.single.gifs track by $index"><img ng-src="{{ item.gifUrl }}">
 					<span class="likes"></br>&#xE807; {{ item.likes }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					<span ng-click="ctrl.shareMe(item)" class="facebook">&#xE809; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					<button class="delete">DELETE</button>
+					<button class="delete" ng-click="ctrl.deleteGif(item, $index)">DELETE</button>
 				</li>
 			</ul>
 		</div>
