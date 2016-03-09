@@ -32,8 +32,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 	// CREATE EMPTY OBJECT TO HOLD USER ID
 	var userObj = {};
 
-	// ALL GIFS ARE NOT DARKENED ON PAGE LOAD
-	// this.imgDarken = false;
+	// EDIT FORM NOT VISIBLE ON PAGE LOAD
+	this.editProfile = false;
 
 
 	// USER LOGGED IN VERIFICATION
@@ -138,6 +138,23 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 	};
 
 
+
+	// EDIT PROFILE BUTTON FUNCTION
+	this.editMe = function() {
+		self.editProfile = true;
+		console.log("Edit button working");
+	};
+
+
+	// EDIT PROFILE SUBMIT FUNCTION
+	this.submitEdit = function() {
+		// keep this to hide the form again after submit
+		self.editProfile = false;
+		console.log("edit submit is working");
+	}
+
+
+
 	// NG-CLICK ON IMAGE TO ADD TO USER'S ARRAY
 	self.addImg = function(item, index) {
 		console.log("The image was clicked!");
@@ -221,6 +238,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 			self.searchPosition = !self.searchPosition;
 		});
 	};
+
+
 
 // DELETE GIF (from user's collection) FUNCTION
     this.deleteGif = function(image, index){

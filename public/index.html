@@ -51,8 +51,20 @@
 			<p ng-click="ctrl.formShow()">already a user? sign in.</p>
 		</form>
 
+
+		<!-- edit profile form -->
+		<form id="editProfile" ng-if="ctrl.editProfile" ng-submit="ctrl.submitEdit()">
+			<input type="text" ng-model="ctrl.editData.email" placeholder="&#xE801; &nbsp; {{ ctrl.single.email }}">
+			<input type="text" ng-model="ctrl.editData.username" placeholder="&#xE805; &nbsp; {{ ctrl.single.username }}">
+			<input type="text" ng-model="ctrl.editData.imgUrl" placeholder="&#xE804; &nbsp; {{ ctrl.single.imgUrl }}">
+			<input type="text" ng-model="ctrl.editData.bio" placeholder="&#xE803; &nbsp; {{ ctrl.single.bio }}">
+			<button class="formButton">SUBMIT</button></br>
+		</form>
+
 		<!-- logout button to show only when logged in -->
-		<button id="logoutButton" class="formButton" ng-if="ctrl.user" ng-click="ctrl.logout()">LOG OUT</button>
+		<button id="logoutButton" class="formButton" ng-if="!ctrl.editProfile && ctrl.user" ng-click="ctrl.logout()">LOG OUT</button>
+
+		<button id="editButton" ng-click="ctrl.editMe()" ng-if="!ctrl.editProfile && ctrl.user">&nbsp;&nbsp;&nbsp;&nbsp; EDIT &nbsp;&nbsp;&nbsp;&nbsp;</button>
 
 	</div>	
 

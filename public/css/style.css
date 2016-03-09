@@ -41,6 +41,22 @@ form.active, .delete.active {
 	font-size: 10px;
 }
 
+#editButton {
+	padding: 1em;
+	margin: 0.5em;
+	background-color: #47a4a9;
+	border: 0;
+	border-radius: 0.5em;
+	font-weight: bold;
+	color: white;
+	font-size: 10px;
+}
+
+#editButton:hover {
+	background-color: #aee4e7;
+	color: #1f273c;
+}
+
 .formButton:hover, .delete:hover {
 	background-color: #ecb2b7;
 	color: #1f273c;
@@ -54,7 +70,7 @@ form > p {
 }
 
 
-#logIn > input, #signUp > input {
+#logIn > input, #signUp > input, #editProfile > input {
 	margin: 0.5em;
 	padding: 0.5em;
 	font-family: 'glass';
@@ -75,7 +91,7 @@ form > p {
 	width: 25%;
 }
 
-#logoutButton {
+#logoutButton, #editButton {
 	float: right;
 	margin-right: 2em;
 }
