@@ -32,10 +32,10 @@
 
 		<!-- show if not already logged in -->
 		<form id="logIn" ng-if="!ctrl.user" ng-class="(ctrl.displayForm)?'':'active'">
-			<input ng-model="ctrl.loginData.email" type="text" placeholder="&#xE801;">
-			<input ng-model="ctrl.loginData.password" type="text" placeholder="&#xE802;">
+			<input ng-model="ctrl.loginData.email" ng-class="(ctrl.loginError)?'errorBorder':''" type="text" placeholder="&#xE801;">
+			<input ng-model="ctrl.loginData.password" ng-class="(ctrl.loginError)?'errorBorder':''" type="text" placeholder="&#xE802;">
 			<button ng-click="ctrl.logIn()" class="formButton">LOG IN</button></br>
-			<div id = "login-status"></div>
+			<p id="login-status"></p>
 			<p ng-click="ctrl.formShow()">not a user? sign up</p>
 		</form>	
 

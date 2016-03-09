@@ -35,6 +35,9 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 	// EDIT FORM NOT VISIBLE ON PAGE LOAD
 	this.editProfile = false;
 
+	// LOGIN ERROR IS FALSE ON PAGE LOAD
+	this.loginError = false;
+
 
 	// USER LOGGED IN VERIFICATION
 	this.getUser = function() {
@@ -111,7 +114,9 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		//success
 		function(response){
 			console.log(response);
-
+			// loginerror boxes go away if needed
+			this.loginError = false;
+			// add id to userObj to be used later
 			userObj.id = response.data._id;
 			// variable to call in template
 			self.single = response.data;
@@ -126,17 +131,15 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 			self.loginData.password = undefined;
 		},
 		function(err){
-			badLogin();
+			// make login error true to change class
+	    	self.loginError = true;
+			// create variable for element with login-status id
+			var box = document.getElementById('login-status');
+			// add text to p tag
+	    	box.innerHTML = "Incorrect login, please try again!";
 		}
 		);
 	};
-
-	var badLogin = function(){
-    var box = document.getElementById('login-status');
-    box.innerHTML = "Incorrect login, please try again!"
-
-	};
-
 
 
 	// EDIT PROFILE BUTTON FUNCTION
@@ -183,6 +186,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 	// FUNCTION TO SHOW FORM BY CHANGING CLASS
 	this.formShow = function() {
 		self.displayForm = !self.displayForm;
+		// make red buttons go away
+		self.loginError = false;
 	};
 
 
@@ -230,6 +235,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		// success
 		function(response) {
 			console.log("logged out");
+			// make red buttons go away
+			self.loginError = false;
 			// reset all user logged in state and template objects
 			self.single = null;
 			self.user = false;

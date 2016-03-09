@@ -65,7 +65,7 @@ form.active, .delete.active {
 
 form > p {
 	font-size: 15px;
-	margin-left: 1em;
+	margin-top: 0.5em;
 	color: white;
 }
 
@@ -94,6 +94,11 @@ form > p {
 #logoutButton, #editButton {
 	float: right;
 	margin-right: 2em;
+}
+
+.errorBorder {
+	border: #d7616c 4px solid !important;
+	box-shadow: 0 0 5px #d7616c;
 }
 
 
@@ -198,7 +203,6 @@ ul {
 
 
 .gifWrapper {
-	/*width: 100%;*/
 	background-color: #626c88;
 	display: inline-block;
 	text-align: center;
