@@ -7,6 +7,7 @@ body {
 	font-size: 16px;
 	font-family: 'Ubuntu', sans-serif;
 	background-color: #1f273c;
+	cursor: default;
 }
 
 @font-face {
@@ -82,7 +83,7 @@ form > p {
 
 section {
 	width: 100%;
-	margin-top: 9em;
+	margin-top: 10em;
 	position: relative;
 	height: 18em;
 	text-align: center;
@@ -107,9 +108,8 @@ section > p {
 	color: #505b7a;
 }
 
-input:focus, #searchButton:focus, button:focus {
+input:focus, #searchButton:focus, button:focus, #xCircle:focus {
     outline-color: #d2e6e7;
-    border-radius: 1em;
 }
 
 #searchForm {
@@ -192,16 +192,24 @@ ul {
 	right: 0.5em;
 }
 
+#xCircle:hover {
+	color: #aee4e7;
+}
 
 li > img {
 	width: 85%;
 	margin-top: 2em;
+	margin-bottom: 0.25em;
 	border-radius: 0.5em;
 	border: #47a4a9 3px solid;
 }
 
 li > img:hover {
 	box-shadow: 0 0 10px #d2e6e7;
+}
+
+li > img:focus {
+	box-shadow: 1px 1px 10px #ffffff;
 }
 
 .delete {
@@ -216,6 +224,77 @@ li > img:hover {
 }
 
 
-@media (min-width: 480px) { /* <----------------------- MIN-WIDTH 480px */
+@media (min-width: 560px) {  /* <----------------------- MIN-WIDTH 560px */
+
+	section > img {
+		width: 206px;
+	}
+
+	#searchForm.position {
+		margin-top: 2em;
+	}
+}
+
+
+@media (min-width: 620px) {  /* <----------------------- MIN-WIDTH 620px */
+
+	#searchForm.position {
+		margin-top: 3em;
+	}
+
+	#searchForm > input {
+		width: 434px;
+	}
+
+	#searchButton {
+		width: 248px;
+	}	
+	
+}
+
+
+@media (min-width: 800px) { /* <----------------------- MIN-WIDTH 800px */
+
+
+	section > h2 {
+		height: 28px;
+	}
+
+	section > p {
+		height: 18px;
+	}
+
+	li > img {
+		width: 657px;
+	}
+
+	.gifWrapper {
+		width: 798px;
+		margin: 0 auto;
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
