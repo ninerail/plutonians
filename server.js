@@ -24,11 +24,11 @@ app.use(expressSession({ name: 'whut', secret: 'conventional wisdom', saveUninit
 app.use(passport.initialize());
 app.use(passport.session());
 
-	// adds {login: true} to res.locals object
-	app.use(function(req, res, next) {
-	  res.locals.login = req.isAuthenticated();
-	  next();
-	});
+// adds {login: true} to res.locals object
+app.use(function(req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  next();
+});
 
 // CONTROLLERS
 var usersController = require('./controllers/usersController');

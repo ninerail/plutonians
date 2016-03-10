@@ -34,7 +34,7 @@
 		<form id="logIn" ng-if="!ctrl.user" ng-class="(ctrl.displayForm)?'':'active'">
 			<input ng-model="ctrl.loginData.email" ng-class="(ctrl.loginError)?'errorBorder':''" type="text" placeholder="&#xE801;">
 			<input ng-model="ctrl.loginData.password" ng-class="(ctrl.loginError)?'errorBorder':''" type="text" placeholder="&#xE802;">
-			<button ng-click="ctrl.logIn()" class="formButton">LOG IN</button></br>
+			<button ng-click="ctrl.logIn()" class="formButton">&nbsp;&nbsp;&nbsp; LOG IN &nbsp;&nbsp;&nbsp;</button></br>
 			<p id="login-status"></p>
 			<p ng-click="ctrl.formShow()">not a user? sign up</p>
 		</form>	
@@ -42,13 +42,14 @@
 
 		<!-- show if not yet signed up -->
 		<form id="signUp" ng-if="!ctrl.user" ng-class="(ctrl.displayForm)?'active':''">
-			<input type="text" ng-model="ctrl.signUpData.email" placeholder="&#xE801; &nbsp; email">
-			<input type="text" ng-model="ctrl.signUpData.password" placeholder="&#xE802; &nbsp; password">
-			<input type="text" ng-model="ctrl.signUpData.username" placeholder="&#xE805; &nbsp; username">
-			<input type="text" ng-model="ctrl.signUpData.imgUrl" placeholder="&#xE804; &nbsp; image">
-			<input type="text" ng-model="ctrl.signUpData.bio" placeholder="&#xE803; &nbsp; bio">
-			<button ng-click="ctrl.signUp()" class="formButton">SIGN UP</button></br>
-			<p ng-click="ctrl.formShow()">already a user? sign in.</p>
+			<input type="text" ng-if="!ctrl.moreInfo" ng-model="ctrl.signUpData.email" placeholder="&#xE801; &nbsp; email">
+			<input type="text" ng-if="!ctrl.moreInfo" ng-model="ctrl.signUpData.password" placeholder="&#xE802; &nbsp; password">
+			<input type="text" ng-if="ctrl.moreInfo" ng-model="ctrl.signUpData.username" placeholder="&#xE805; &nbsp; username">
+			<input type="text" ng-if="ctrl.moreInfo" ng-model="ctrl.signUpData.imgUrl" placeholder="&#xE804; &nbsp; image">
+			<input type="text" ng-if="ctrl.moreInfo" ng-model="ctrl.signUpData.bio" placeholder="&#xE803; &nbsp; bio">
+			<button ng-click="ctrl.moreForm()" ng-if="!ctrl.moreInfo" class="formButton">CONTINUE</button>
+			<button ng-if="ctrl.moreInfo" ng-click="ctrl.signUp()" class="formButton">&nbsp;&nbsp;SIGN UP&nbsp;&nbsp;</button></br>
+			<p ng-click="ctrl.formShow()" ng-if="!ctrl.moreInfo">already a user? sign in.</p>
 		</form>
 
 

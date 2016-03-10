@@ -4,16 +4,6 @@ var app = angular.module('podcastApp', []);
 // GET USER DATA CONTROLLER
 app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 
-
-	// FACEBOOK SHARE BUTTON
-	this.shareMe = function(item) {
-		console.log(item.gifUrl);
-		FB.ui({
-			method: 'share',
-			href: item.gifUrl,
-			}, function(response){});
-	}
-
 	// VARIABLE FOR THIS
 	var self = this;
 
@@ -37,6 +27,19 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 
 	// LOGIN ERROR IS FALSE ON PAGE LOAD
 	this.loginError = false;
+
+	// HIDE SIGNUP FORM ON PAGE LOAD
+	this.moreInfo = false;
+
+
+	// FACEBOOK SHARE BUTTON
+	this.shareMe = function(item) {
+		console.log(item.gifUrl);
+		FB.ui({
+			method: 'share',
+			href: item.gifUrl,
+			}, function(response){});
+	}
 
 
 	// USER LOGGED IN VERIFICATION
@@ -70,9 +73,15 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 	};
 
 
-
 	// EVOKE GET USER FUNCTION ON PAGE LOAD
 	this.getUser();
+
+
+	// FORM FUNCTION FOR SIGN UP FORM
+	this.moreForm = function() {
+		console.log("more form button was clicked");
+		self.moreInfo = !self.moreInfo;
+	}
 
 
 	// SIGNUP FUNCTION
@@ -86,6 +95,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		//success
 		function(response){
 			console.log(response);
+			// hide the first form 
+			self.moreInfo = false;
 			// console.log(response.data._id);
 			self.single = response.data;
 			// self.user = true for logged in data
@@ -114,6 +125,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		//success
 		function(response){
 			console.log(response);
+			// hide the first form 
+			self.moreInfo = false;
 			// loginerror boxes go away if needed
 			this.loginError = false;
 			// add id to userObj to be used later
@@ -160,24 +173,29 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 
 	// NG-CLICK ON IMAGE TO ADD TO USER'S ARRAY
 	self.addImg = function(item, index) {
-		console.log("The image was clicked!");
-		console.log(item);
-		console.log(userObj.id);
+		if (self.user) {
+			console.log("The image was clicked!");
+			console.log(item);
+			console.log(userObj.id);
 
-		// get index number to darken with class
-		console.log(index);
-		this.selectedIndex = index;
-		console.log(this.selectedIndex);
+			// get index number to darken with class
+			console.log(index);
+			this.selectedIndex = index;
+			console.log(this.selectedIndex);
 
-		$http({
-			method: "PUT",
-			url: "/users/" + userObj.id,
-			data: item
-		}).then(
-		// success
-		function(results) {
-			// console.log("NG-CLICK ADDED ITEM TO USER ARRAY!!");
-		});
+			$http({
+				method: "PUT",
+				url: "/users/" + userObj.id,
+				data: item
+			}).then(
+			// success
+			function(results) {
+				// console.log("NG-CLICK ADDED ITEM TO USER ARRAY!!");
+			});
+		}
+		else {
+			console.log("not logged in");
+		}
 	};
 
 
@@ -200,6 +218,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		self.gifContainer = !self.gifContainer
 		// show my gifs
 		self.myGifs = true;
+		// remove yellow borders
+		this.selectedIndex = !index;
 	};
 
 

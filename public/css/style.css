@@ -18,7 +18,7 @@ body {
 #formDiv {
 	width: 100%;
     padding: 1em 0 1em 0;
-    text-align: center;
+    text-align: right;
     position: fixed;
     top: 0;
     background-color: rgba(57, 68, 99, 0.8);
@@ -32,7 +32,7 @@ form.active, .delete.active {
 
 .formButton {
 	padding: 1em;
-	margin: 0.5em;
+	margin: 1em;
 	background-color: #d7616c;
 	border: 0;
 	border-radius: 0.5em;
@@ -65,14 +65,14 @@ form.active, .delete.active {
 
 form > p {
 	font-size: 15px;
-	margin-top: 0.5em;
+	margin: 0.5em 1em 0 0;
 	color: white;
 }
 
 
 #logIn > input, #signUp > input, #editProfile > input {
 	margin: 0.5em;
-	padding: 0.5em;
+	padding: 0.6em;
 	font-family: 'glass';
 	font-size: 14px;
 	background-color: #626c88;
@@ -83,16 +83,15 @@ form > p {
 
 
 #logIn > input {
-	width: 30%;
+	width: 22%;
 }
 
 
 #signUp > input {
-	width: 25%;
+	width: 22%;
 }
 
 #logoutButton, #editButton {
-	float: right;
 	margin-right: 2em;
 }
 
