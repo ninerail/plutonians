@@ -1,4 +1,4 @@
-![alt text](https://github.com/ninerail/plutonians/tree/master/public/images/Logo.jpg "Logo Title Text 1")
+![alt text](https://github.com/ninerail/plutonians/blob/master/public/images/logo.png "Logo Title Text 1")
 
 # GIF.SY
 ================================
