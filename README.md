@@ -10,7 +10,7 @@
 	* Sign up/log in functionality: encrypted passwords and authentication flow
 	* User restrictions
 
-2. Technologies used:
+3. Technologies used:
 	* Angular single page with full CRUD functionality
 	* Giphy API
 	* Passport authentication
@@ -26,11 +26,11 @@
 	* MongoDB
 
 
-3. Two models are defined
+4. Two models are defined
 	* Gifs stores the gif url and the number of likes
 	* Users stores user login information and an array of gifs that have saved
 
-4. Controllers
+5. Controllers
 	* Show all users json (not public)
 	* Is logged in (tests for authentication)
 	* Signup
@@ -47,7 +47,7 @@
 	* API integration with Twitter, Pinterest
 	* Ability to create and upload own gifs
 
-5.	Plutonians are:
+7.	Plutonians are:
 	* Andy Greene
 	* Amber VandeKerkhoff
 	* Matt Jamison
