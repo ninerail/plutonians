@@ -1,8 +1,12 @@
+![alt text](https://github.com/ninerail/plutonians/tree/master/public/images/Logo.jpg "Logo Title Text 1")
+
 # GIF.SY
 ================================
 ## A Plutonians Production
 
 [Heroku Deployment] (https://plutonians.herokuapp.com/ "Heroku Deployment")
+
+[GitHub Repository] (https://github.com/ninerail/plutonians "GitHub Repository")
 
 1. GIF.SY is an application that allows users to search and select their favorite GIFs, save them to a collection and share them via Facebook
 
