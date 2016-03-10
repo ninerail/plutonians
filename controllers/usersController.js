@@ -45,6 +45,26 @@ router.post('/login', passport.authenticate('local-login'), function(req, res){
     res.send(req.user);
 });
 
+// EDIT USER PROFILE
+router.post('/edit', function(req, res){
+    console.log("here is the req.body:        ");
+    console.log(req.body.editData.email);
+    User.findById(req.user, function(err, user){
+        
+
+        user.username = req.body.editData.username
+        user.save()
+        user.email = req.body.editData.email
+        user.save()
+        user.imgUrl = req.body.editData.imgUrl
+        user.save()
+        user.bio = req.body.editData.bio
+        user.save()
+
+        res.send(user)
+
+    })
+})
 
 //DELETE GIF
 router.delete('/delete/:id', function(req, res){

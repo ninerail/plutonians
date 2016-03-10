@@ -157,16 +157,52 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 
 	// EDIT PROFILE BUTTON FUNCTION
 	this.editMe = function() {
+
 		self.editProfile = true;
-		console.log("Edit button working");
+
+
 	};
 
 
 	// EDIT PROFILE SUBMIT FUNCTION
 	this.submitEdit = function() {
+		
+		console.log("edit submit is working");
+		// console.log("below 'this' is console logged, containing my form data ")
+		// console.log(this)
+		// console.log("below 'this.editData is logged, comes back undefined")
+		// console.log(this.editData)
+		console.log(this)
+		
+		console.log("Edit button working");
+		$http({
+			method: 'POST',
+			url: '/users/edit',
+			data: this // set ng-models on edit form
+		}).then(
+		// success
+		function(response){
+			console.log(response)
+			console.log($scope)
+
+			$scope.ctrl.single.bio = response.data.bio
+			$scope.ctrl.single.imgUrl = response.data.imgUrl
+			$scope.ctrl.single.username = response.data.username
+			$scope.ctrl.single.email = response.data.email
+
+		},
+		// err
+		function(err){
+			console.log(err)
+		}
+		)
+
+
 		// keep this to hide the form again after submit
 		self.editProfile = false;
-		console.log("edit submit is working");
+		
+
+
 	}
 
 
