@@ -12,7 +12,23 @@ body {
 
 @font-face {
 	font-family: 'glass';
-	src: url('../fonts/fontello-a0908d28/font/fontello.ttf');
+	src: url('../fonts/fontello-9c17623d/font/fontello.ttf');
+}
+
+#formDiv > h2 {
+	float: left;
+	color: white;
+	margin: 0.75em 0 0 1em;
+}
+
+a {
+	text-decoration: none;
+	color: #1f273c;
+	cursor: default;
+}
+
+a:hover {
+	color: #aee4e7;
 }
 
 #formDiv {
@@ -237,6 +253,16 @@ li > img {
 
 li > img:hover {
 	box-shadow: 0 0 10px #d2e6e7;
+}
+
+a {
+	text-decoration: none;
+	color: #1f273c;
+	cursor: default;
+}
+
+a:hover {
+	color: #aee4e7;
 }
 
 .current {

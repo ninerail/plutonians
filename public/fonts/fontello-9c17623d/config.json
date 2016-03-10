@@ -65,6 +65,18 @@
       "css": "facebook-squared",
       "code": 59401,
       "src": "fontawesome"
+    },
+    {
+      "uid": "d090355c31f497b61d676416c1fd39fb",
+      "css": "twitter",
+      "code": 59402,
+      "src": "entypo"
+    },
+    {
+      "uid": "689febe699d74bc8862965555503e445",
+      "css": "pinterest",
+      "code": 59403,
+      "src": "entypo"
     }
   ]
 }

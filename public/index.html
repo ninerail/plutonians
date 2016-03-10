@@ -1,6 +1,7 @@
 <html ng-app="podcastApp">
 <head>
-	<title></title>
+	<link rel="shortcut icon" href="/favicon.png" type="image/png">
+	<title>gifty</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
@@ -9,6 +10,7 @@
 </head>
 <body ng-controller="getOurData as ctrl">
 	
+	<!-- for posting to facebook -->
 	<script>
 		window.fbAsyncInit = function() {
 		FB.init({
@@ -27,8 +29,8 @@
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
 
-
 	<div id="formDiv">
+		<h2>g i f . s y</h2>
 
 		<!-- show if not already logged in -->
 		<form id="logIn" ng-if="!ctrl.user" ng-class="(ctrl.displayForm)?'':'active'">
@@ -49,7 +51,7 @@
 			<input type="text" ng-if="ctrl.moreInfo" ng-model="ctrl.signUpData.bio" placeholder="&#xE803; &nbsp; bio">
 			<button ng-click="ctrl.moreForm()" ng-if="!ctrl.moreInfo" class="formButton">CONTINUE</button>
 			<button ng-if="ctrl.moreInfo" ng-click="ctrl.signUp()" class="formButton">&nbsp;&nbsp;SIGN UP&nbsp;&nbsp;</button></br>
-			<p ng-click="ctrl.formShow()" ng-if="!ctrl.moreInfo">already a user? sign in.</p>
+			<p ng-click="ctrl.formShow()">already a user? sign in.</p>
 		</form>
 
 
@@ -67,8 +69,8 @@
 
 		<button id="editButton" ng-click="ctrl.editMe()" ng-if="!ctrl.editProfile && ctrl.user">&nbsp;&nbsp;&nbsp;&nbsp; EDIT &nbsp;&nbsp;&nbsp;&nbsp;</button>
 
-	</div>	
 
+	</div>	
 
 
 	<!-- USER BIO area -->
@@ -107,8 +109,9 @@
 		<div class="gifWrapper">
 			<ul>	
 				<li ng-class="($parent.ctrl.myGifs)?'':'hideMyGifs'" ng-repeat="item in ctrl.single.gifs track by $index"><img ng-src="{{ item.gifUrl }}">
-					<span class="likes"></br>&#xE807; {{ item.likes }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					<span ng-click="ctrl.shareMe(item)" class="facebook">&#xE809; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<span class="likes"></br>&#xE807; {{ item.likes }} &nbsp;&nbsp;&nbsp;</span>
+					<span ng-click="ctrl.shareMe(item)" class="facebook">&#xE809; &nbsp;&nbsp;&nbsp;</span>
+					<span class="facebook">&#xE80A; &nbsp;&nbsp;&nbsp;</span>
 					<button class="delete" ng-click="ctrl.deleteGif(item, $index)">DELETE</button>
 				</li>
 			</ul>
