@@ -82,7 +82,6 @@ form.active, .delete.active {
 	color: #1f273c;
 }
 
-
 form > p {
 	font-size: 15px;
 	margin: 0.5em 1em 0 0;
@@ -92,7 +91,6 @@ form > p {
 form > p:hover {
 	color: #f4de33;
 }
-
 
 #logIn > input, #signUp > input, #editProfile > input {
 	margin: 0.5em;
@@ -104,7 +102,6 @@ form > p:hover {
 	border-radius: 0.5em;
 	border: #47a4a9 solid 2px;
 }
-
 
 #logIn > input {
 	width: 22%;
@@ -123,7 +120,6 @@ form > p:hover {
 	border: #d7616c 4px solid !important;
 	box-shadow: 0 0 5px #d7616c;
 }
-
 
 section {
 	width: 100%;
@@ -166,7 +162,6 @@ input:focus, #searchButton:focus, button:focus, #xCircle:focus {
 	margin-top: 1em;
 }
 
-
 #searchForm > input {
 	width: 70%;
 	padding: 1.5em;
@@ -195,18 +190,15 @@ input:focus, #searchButton:focus, button:focus, #xCircle:focus {
 	color: #1f273c;
 }
 
-
 .hideMyGifs {
 	display: none;
 }
 
-
 .hideGifContainer {
 	display: none;
-	/*background-color: #1f273c !important;
-	padding: 0 !important;*/
+	background-color: #1f273c !important;
+	padding: 0 !important;
 }
-
 
 .facebook:hover {
 	color: #aee4e7;
@@ -219,13 +211,11 @@ ul {
 	color: #1f273c;
 }
 
-
 #searchGifContainer, #userGifContainer {
 	width: 100%;
 	margin-top: 3em;
 	text-align: center;
 }
-
 
 .gifWrapper {
 	background-color: #626c88;
@@ -250,7 +240,6 @@ ul {
 	color: #aee4e7;
 }
 
-
 li > img {
 	width: 85%;
 	height: auto;
@@ -259,7 +248,6 @@ li > img {
 	border-radius: 0.5em;
 	border: #47a4a9 3px solid;
 }
-
 
 li > img:hover {
 	box-shadow: 0 0 10px #d2e6e7;
@@ -291,7 +279,6 @@ a:hover {
 	color: white;
 }
 
-
 @media (min-width: 560px) {  /* <----------------------- MIN-WIDTH 560px */
 
 	section > img {
@@ -302,7 +289,6 @@ a:hover {
 		margin-top: 2em;
 	}
 }
-
 
 @media (min-width: 600px) {  /* <----------------------- MIN-WIDTH 600px */
 
@@ -317,7 +303,6 @@ a:hover {
 	}
 
 }
-
 
 @media (min-width: 620px) {  /* <----------------------- MIN-WIDTH 620px */
 

@@ -66,7 +66,6 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 				self.myGifs = true;
 				// id needs to be defined if already logged in
 				userObj.id = response.data._id;
-
 			}
 			else {
 				// user is not logged in
@@ -158,26 +157,20 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 	};
 
 
+
 	// EDIT PROFILE BUTTON FUNCTION
 	this.editMe = function() {
-
 		self.editProfile = true;
-
-
 	};
+
 
 
 	// EDIT PROFILE SUBMIT FUNCTION
 	this.submitEdit = function() {
 		
 		console.log("edit submit is working");
-		// console.log("below 'this' is console logged, containing my form data ")
-		// console.log(this)
-		// console.log("below 'this.editData is logged, comes back undefined")
-		// console.log(this.editData)
 		console.log(this)
-		
-		console.log("Edit button working");
+
 		$http({
 			method: 'POST',
 			url: '/users/edit',
@@ -187,26 +180,19 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		function(response){
 			console.log(response)
 			console.log($scope)
-
-			$scope.ctrl.single.bio = response.data.bio
-			$scope.ctrl.single.imgUrl = response.data.imgUrl
-			$scope.ctrl.single.username = response.data.username
-			$scope.ctrl.single.email = response.data.email
-
+			$scope.ctrl.single.bio = response.data.bio;
+			$scope.ctrl.single.imgUrl = response.data.imgUrl;
+			$scope.ctrl.single.username = response.data.username;
+			$scope.ctrl.single.email = response.data.email;
 		},
 		// err
 		function(err){
 			console.log(err)
 		}
 		)
-
-
 		// keep this to hide the form again after submit
 		self.editProfile = false;
-		
-
-
-	}
+	};
 
 
 
@@ -248,6 +234,21 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 	};
 
 
+	// SEARCH FOR GIF BUTTON
+	this.searchGifs = function() {
+		// hide search gifs
+		self.closedOut = true;
+		// call get user function
+		self.getUser();
+		// change state of gifContainer
+		self.gifContainer = true;
+		// show my gifs
+		// self.myGifs = true;
+		// remove yellow borders
+		self.selectedIndex = null;
+	};
+
+
 
 	// HIDE/SHOW GIF CONTAINERS
 	this.hideGifs = function() {
@@ -270,14 +271,15 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		var controller = this;
 		var id = this.input;
 		console.log(id);
-		// show search box
-		self.closedOut = true;
+	
 		$http({
 			method: 'get',
 			url: 'https://api.giphy.com/v1/gifs/search?q=' + id + '&api_key=dc6zaTOxFJmzC'
 		}).then(
 		//success
 		function(response) {
+			// show search box
+			self.closedOut = true;
 			// hide user gifs
 			self.myGifs = false;
 			// console.log(response.data.data);

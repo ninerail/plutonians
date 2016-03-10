@@ -61,8 +61,7 @@
 			<input type="text" ng-model="ctrl.editData.username" placeholder="&#xE805; &nbsp; {{ ctrl.single.username }}">
 			<input type="text" ng-model="ctrl.editData.imgUrl" placeholder="&#xE804; &nbsp; {{ ctrl.single.imgUrl }}">
 			<input type="text" ng-model="ctrl.editData.bio" placeholder="&#xE803; &nbsp; {{ ctrl.single.bio }}">
-			<input type = "submit">
-			<!-- <button class="formButton">SUBMIT</button></br> -->
+			<button class="formButton">SUBMIT</button></br>
 		</form>
 
 		<!-- logout button to show only when logged in -->
@@ -86,14 +85,14 @@
 	<!-- search for gifs -->
 	<form id="searchForm" ng-submit="ctrl.getData(input)" ng-class="(ctrl.searchPosition)?'position':''">
 		<input type="text" placeholder="&#xE800;" ng-model="ctrl.input"></br>
-		<button ng-click="ctrl.hideGifs()" id="searchButton">SEARCH GIFS</button>
+		<button ng-click="ctrl.searchGifs()" id="searchButton">SEARCH GIFS</button>
 	</form>	
 
 
 
 	<!-- List gifs from search -->
 	<div id="searchGifContainer" ng-class="(ctrl.gifContainer)?'':'hideGifContainer'" ng-if="ctrl.closedOut">
-		<div class="gifWrapper" ng-class="(ctrl.gifContainer)?'':'hideGifContainer'">
+		<div class="gifWrapper">
 			<span ng-click="ctrl.hideGifs()" id="xCircle">&#xE808;</span>
 			<ul>
 				<li ng-repeat="item in ctrl.stuff track by $index" ng-click="$parent.ctrl.addImg(item, $index)">
@@ -106,7 +105,7 @@
 
 
 	<!-- List user gifs -->
-	<div id="userGifContainer" ng-class="(ctrl.myGifs)?'':'hideMyGifs'">
+	<div id="userGifContainer" ng-if="ctrl.user" ng-class="(ctrl.myGifs)?'':'hideMyGifs'">
 		<div class="gifWrapper">
 			<ul>	
 				<li ng-class="($parent.ctrl.myGifs)?'':'hideMyGifs'" ng-repeat="item in ctrl.single.gifs track by $index"><img ng-src="{{ item.gifUrl }}">

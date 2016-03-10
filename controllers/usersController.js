@@ -27,6 +27,7 @@ router.get('/isLoggedIn', function(req, res) {
     }
     else {
         console.log("not logged in");
+        res.send("not logged in");
     }
 });
 
