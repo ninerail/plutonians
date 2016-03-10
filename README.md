@@ -9,7 +9,7 @@
 2. Technologies used:
 	* Angular single page HTML
 	* Passport authentication
-	* CSS transitions
+	* Angular transitions
 	* Facebook SDK for sharing gif to Facebook
 	* Fontello custom characters
 
@@ -19,7 +19,7 @@
 
 4. Controllers
 	* Show all users json (not public)
-	* Is logged in: tests for authentication
+	* Is logged in (tests for authentication)
 	* Signup
 	* Edit user profile
 	* Delete gif (splices chosen gif out of user gifs array)
