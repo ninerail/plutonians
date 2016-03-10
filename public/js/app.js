@@ -219,7 +219,7 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		// show my gifs
 		self.myGifs = true;
 		// remove yellow borders
-		this.selectedIndex = !index;
+		self.selectedIndex = null;
 	};
 
 

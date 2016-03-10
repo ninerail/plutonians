@@ -21,6 +21,10 @@ body {
 	margin: 0.75em 0 0 1em;
 }
 
+#formDiv > h2:hover {
+	color: #f4de33;
+}
+
 a {
 	text-decoration: none;
 	color: #1f273c;
@@ -83,6 +87,10 @@ form > p {
 	font-size: 15px;
 	margin: 0.5em 1em 0 0;
 	color: white;
+}
+
+form > p:hover {
+	color: #f4de33;
 }
 
 
@@ -267,7 +275,6 @@ a:hover {
 
 .current {
 	border: 7px solid #f4de33 !important;
-	box-sizing: border-box;
 	box-shadow: 0 0 10px #f4de33;
 }
 
