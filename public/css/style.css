@@ -203,6 +203,8 @@ input:focus, #searchButton:focus, button:focus, #xCircle:focus {
 
 .hideGifContainer {
 	display: none;
+	/*background-color: #1f273c !important;
+	padding: 0 !important;*/
 }
 
 

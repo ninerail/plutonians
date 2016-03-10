@@ -1,6 +1,6 @@
 <html ng-app="podcastApp">
 <head>
-	<link rel="shortcut icon" href="/favicon.png" type="image/png">
+	<link rel="shortcut icon" href="http://res.cloudinary.com/dmjtck2cd/image/upload/v1457620127/destinations/favicon.png" type="image/png">
 	<title>gif.sy</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700' rel='stylesheet' type='text/css'>
@@ -35,7 +35,7 @@
 		<!-- show if not already logged in -->
 		<form id="logIn" ng-if="!ctrl.user" ng-class="(ctrl.displayForm)?'':'active'">
 			<input ng-model="ctrl.loginData.email" ng-class="(ctrl.loginError)?'errorBorder':''" type="text" placeholder="&#xE801;">
-			<input ng-model="ctrl.loginData.password" ng-class="(ctrl.loginError)?'errorBorder':''" type="text" placeholder="&#xE802;">
+			<input ng-model="ctrl.loginData.password" ng-class="(ctrl.loginError)?'errorBorder':''" type="password" placeholder="&#xE802;">
 			<button ng-click="ctrl.logIn()" class="formButton">&nbsp;&nbsp;&nbsp; LOG IN &nbsp;&nbsp;&nbsp;</button></br>
 			<p id="login-status"></p>
 			<p ng-click="ctrl.formShow()">not a user? sign up</p>
@@ -45,7 +45,7 @@
 		<!-- show if not yet signed up -->
 		<form id="signUp" ng-if="!ctrl.user" ng-class="(ctrl.displayForm)?'active':''">
 			<input type="text" ng-if="!ctrl.moreInfo" ng-model="ctrl.signUpData.email" placeholder="&#xE801; &nbsp; email">
-			<input type="text" ng-if="!ctrl.moreInfo" ng-model="ctrl.signUpData.password" placeholder="&#xE802; &nbsp; password">
+			<input type="password" ng-if="!ctrl.moreInfo" ng-model="ctrl.signUpData.password" placeholder="&#xE802; &nbsp; password">
 			<input type="text" ng-if="ctrl.moreInfo" ng-model="ctrl.signUpData.username" placeholder="&#xE805; &nbsp; username">
 			<input type="text" ng-if="ctrl.moreInfo" ng-model="ctrl.signUpData.imgUrl" placeholder="&#xE804; &nbsp; image">
 			<input type="text" ng-if="ctrl.moreInfo" ng-model="ctrl.signUpData.bio" placeholder="&#xE803; &nbsp; bio">
@@ -92,9 +92,9 @@
 
 
 	<!-- List gifs from search -->
-	<div id="searchGifContainer" ng-class="(ctrl.gifContainer)?'':'hideGifContainer'">
-		<div class="gifWrapper">
-			<span ng-if="ctrl.user" ng-click="ctrl.hideGifs()" id="xCircle">&#xE808;</span>
+	<div id="searchGifContainer" ng-class="(ctrl.gifContainer)?'':'hideGifContainer'" ng-if="ctrl.closedOut">
+		<div class="gifWrapper" ng-class="(ctrl.gifContainer)?'':'hideGifContainer'">
+			<span ng-click="ctrl.hideGifs()" id="xCircle">&#xE808;</span>
 			<ul>
 				<li ng-repeat="item in ctrl.stuff track by $index" ng-click="$parent.ctrl.addImg(item, $index)">
 					<img ng-class="($index == $parent.ctrl.selectedIndex)?'current':''" ng-src="{{item.images.fixed_height.url}}">
