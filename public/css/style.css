@@ -50,6 +50,8 @@ form.active, .delete.active {
 	display: none;
 }
 
+
+
 .formButton {
 	padding: 1em;
 	margin: 1em;
@@ -279,6 +281,56 @@ a:hover {
 	color: white;
 }
 
+/* ---------------- TRANSITIONS ------------- */
+/*
+button{
+	-webkit-transition: linear .25s;
+	transition: linear .25s;
+}
+button.ng-enter{
+	opacity: 0;
+}
+
+button.ng-enter-active{
+	opacity: 1;
+}
+
+button.ng-leave{
+	opacity: .25;
+}
+
+button.ng-leave-active{
+	opacity: 0;
+}*/
+
+
+#searchForm{
+	-webkit-transition: linear .5s;
+	transition: linear .5s;
+}
+
+#searchForm.ng-enter{
+	opacity: 0;
+}
+
+#searchForm.ng-enter-active{
+	opacity: 1;
+}
+
+#searchForm.ng-leave{
+	opacity: 1;
+}
+
+#searchForm.ng-leave-active{
+	opacity: 0;
+}
+
+/* ---------------- END TRANSITIONS ------------- */
+
+
+
+
+
 @media (min-width: 560px) {  /* <----------------------- MIN-WIDTH 560px */
 
 	section > img {
@@ -331,25 +383,6 @@ a:hover {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
