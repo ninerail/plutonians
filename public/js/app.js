@@ -1,4 +1,4 @@
-var app = angular.module('podcastApp', []);
+var app = angular.module('podcastApp', ['ngAnimate']);
 
 
 // GET USER DATA CONTROLLER
@@ -167,6 +167,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 
 	// EDIT PROFILE SUBMIT FUNCTION
 	this.submitEdit = function() {
+		// keep this to hide the form again after submit
+		self.editProfile = false;
 		
 		console.log("edit submit is working");
 		console.log(this)
@@ -190,8 +192,7 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 			console.log(err)
 		}
 		)
-		// keep this to hide the form again after submit
-		self.editProfile = false;
+		
 	};
 
 
