@@ -31,6 +31,9 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 	// HIDE SIGNUP FORM ON PAGE LOAD
 	this.moreInfo = false;
 
+	// HIDE SEARCH GIFS ON PAGE LOAD
+	this.closedOut = false;
+
 
 	// FACEBOOK SHARE BUTTON
 	this.shareMe = function(item) {
@@ -212,6 +215,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 
 	// HIDE/SHOW GIF CONTAINERS
 	this.hideGifs = function() {
+		// hide search gifs
+		self.closedOut = false;
 		// call get user function
 		self.getUser();
 		// change state of gifContainer
@@ -229,6 +234,8 @@ app.controller('getOurData', ['$http', '$scope', function($http, $scope){
 		var controller = this;
 		var id = this.input;
 		console.log(id);
+		// show search box
+		self.closedOut = true;
 		$http({
 			method: 'get',
 			url: 'https://api.giphy.com/v1/gifs/search?q=' + id + '&api_key=dc6zaTOxFJmzC'
